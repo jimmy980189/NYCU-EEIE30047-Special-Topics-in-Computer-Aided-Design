@@ -36,9 +36,10 @@ class PI {
         ~PI() {};
 
         string GetLabel() { return label; };
+        string GetV() { return V; };
         int GetValue() { return value; };
         int GetMask() { return mask; };
-        string GetV() { return V; };
+        int GetLiteral() { return literal; };
         bool GetPrime() { return prime; };
         bool GetCovering() { return covering; };
         bool GetDeleted() { return deleted; };
@@ -47,6 +48,8 @@ class PI {
 
         void MposPushBack(int m) { mpos.push_back(m); };
         void PiCoverPushBack(int m) { piCover.insert(m); };
+        void DeletePiCover(int m) { piCover.erase(m); }
+        void SetLiteral(int l) { literal = l; };
         void SetPrime(bool flag) { prime = flag; };
         void SetCovering(bool flag) { covering = flag; };
         void SetV(string V) { this->V = V; };
@@ -65,11 +68,15 @@ class PI {
             for (auto i : piCover)
                 if ((uncover.find(i) != uncover.end()) && !rhs->FindCover(i))
                     return false;
+
+            if (piCover.size() == rhs->GetPiCover().size())
+                return false;
+
             return true;
         }
 
         void PrintCover() {
-            cout << "p cover: " << piCover.size() << " { ";
+            cout << "cover: " << piCover.size() << " { ";
             for (auto i : piCover)
                 cout << i << " ";
             cout << "}" << endl;
@@ -86,6 +93,7 @@ struct PIcmp {
 class QM {
     private:
         int numVariables;
+        int literal = 0;
         set<int> onSet;
         set<int> dcSet;
         set<int> allSet;
@@ -117,8 +125,6 @@ class QM {
         void ColumnCovering();
         void FindEssential();
 
-        bool IsUncover(int f) { return uncover.find(f) != uncover.end(); };
-
         void Print();
         void PrintTable();
         void PrintCandidate();
@@ -143,10 +149,12 @@ int main(int argc, char* argv[]) {
     Qm.ColumnCovering();
 
     /*
+     *cout << "========[FINISHED]========" << endl;
+     *Qm.PrintEssential();
      *cout << "---" << endl;
      *Qm.PrintPset();
      */
-    Qm.PrintEssential();
+
     Qm.GenOutputFile(argv[2]);
 
     return 0;
@@ -215,7 +223,8 @@ void QM::GenOutputFile(const char* filename) {
         output << slice << endl;
     }
     
-    output << "literal=" << "0" << endl;
+    cout << "literal=" << literal << endl;
+    output << "literal=" << literal << endl;
 
     output.close();
 }
@@ -281,40 +290,47 @@ void QM::GenPrimaryImplicant() {
 
 void QM::ColumnCovering() {
 
+    int min = INT_MAX;
+
     InitColumn();
+    uncover = onSet;
 
     cout << " --Init-- " << endl;
     PrintPset();
     PrintColumn();
-    cout << " --- " << endl;
-
-    uncover = onSet;
     PrintUncover();
 
-    FindEssential();
-    RowReduction();
-    PrintUncover();
+    while (uncover.size() > 1) {
+        cout << "[Iteration] uncover size: " << uncover.size() << endl;
+        FindEssential();
+        cout << "check " << uncover.size() << " ";
+        PrintUncover();
+        if (uncover.size() > 1)
+            RowReduction();
+        PrintUncover();
+        PrintColumn();
+    }
 
-    cout << " ---- " << endl;
-    PrintColumn();
-    PrintUncover();
-    FindEssential();
-    PrintColumn();
-    PrintUncover();
-    //RowReduction();
-    //PrintUncover();
+    if (uncover.size() == 1) {
+        cout << "uncover: " << uncover.size() << endl;
+        cout << "column: " << column.size() << endl;
+        PI* tmp = NULL;
+        for (auto i : column)
+            if (i.second->GetLiteral() < min) {
+                min = i.second->GetLiteral();
+                tmp = i.second;
+            }
 
-    cout << "---" << endl;
-    cout << "onSet: " << onSet.size() << endl;
-    cout << "uncover: " << uncover.size() << endl;
-    cout << "column: " << column.size() << endl;
-
+        cout << tmp->GetV() << endl;
+        literal += tmp->GetLiteral();
+        essential.insert(tmp);
+    }
 
     /*
-     *while (uncover.size() > 0) {
-     *    FindEssential();
-     *    RowReduction();
-     *}
+     *cout << "---" << endl;
+     *cout << "onSet: " << onSet.size() << endl;
+     *cout << "uncover: " << uncover.size() << endl;
+     *cout << "column: " << column.size() << endl;
      */
 }
 
@@ -331,6 +347,7 @@ void QM::InitColumn() {
 
         string l("P" + to_string(cnt++));
         p->SetLabel(l);
+        p->SetLiteral(numVariables - setCnt);
 
         for (int i = 0; i < num; ++i) {
             bitset<BITSETLEN> ref = i;
@@ -356,19 +373,29 @@ void QM::FindEssential() {
     for (auto on : onSet) {
         if (column.count(on) == 1) {
             auto f = column.find(on);
+
+            cout << "ADD " << f->second->GetLabel() << " to essential. Remove ";
+
             f->second->SetCovering(true);
             essential.insert(f->second);
+            literal += f->second->GetLiteral();
 
             auto tmp = f->second->GetPiCover();
             for (auto i : tmp) {
+
+                cout << i << " ";
+
                 set<int>::iterator del = uncover.find(i);
                 if (del != uncover.end())
                     uncover.erase(del);
 
                 auto range = column.equal_range(i);
-                for (multimap<int, PI*>::iterator it = range.first; it != range.second; )
+                for (multimap<int, PI*>::iterator it = range.first; it != range.second; ) {
+                    it->second->DeletePiCover(i);
                     it = column.erase(it);
+                }
             }
+            cout << endl;
         }
         else if (onSet.size() == 1) {
 
@@ -383,6 +410,9 @@ void QM::RowReduction() {
     for (auto i : column) {
         for (auto j : column) {
             if (i.second != j.second && i.second->IsCoverIncludedIn(uncover, j.second)) {
+                cout << "MARKED " << i.second->GetLabel() << " as DELETED ";
+                cout << "Since it is a subset of " << j.second->GetLabel() << " ";
+                j.second->PrintCover();
                 i.second->SetDeleted(true);
                 del.insert(i.first);
                 break;
@@ -391,8 +421,10 @@ void QM::RowReduction() {
     }
 
     for (multimap<int, PI*>::iterator it = column.begin(); it != column.end(); )
-        if (it->second->GetDeleted())
+        if (it->second->GetDeleted()) {
+            cout << "DELETED " << it->second->GetLabel() << endl;
             it = column.erase(it);
+        }
         else 
             ++it;
 }
@@ -412,6 +444,7 @@ void QM::Print() {
 }
 
 void QM::PrintUncover() {
+    cout << "uncover: ";
     for (auto i : uncover)
         cout << i << " ";
     cout << endl;
@@ -447,12 +480,13 @@ void QM::PrintColumn() {
 
 void QM::PrintPset() {
     cout << "pset: " << pset.size() << endl;
-    cout << "Label V Prime Covering" << endl;
+    cout << "Label V Prime Covering Literal" << endl;
     for (auto i : pset) {
         cout << i->GetLabel() << " ";
         cout << i->GetV() << " ";
         cout << i->GetPrime() << " ";
         cout << i->GetCovering() << " ";
+        cout << i->GetLiteral() << " ";
         /*
          *cout << bitset<BITSETLEN>(i->GetValue()) << " ";
          *cout << bitset<BITSETLEN>(i->GetMask()) << endl;
@@ -462,13 +496,14 @@ void QM::PrintPset() {
 }
 
 void QM::PrintEssential() {
-    cout << "pset: " << essential.size() << endl;
-    cout << "Label V Prime Covering" << endl;
+    cout << "essential: " << essential.size() << endl;
+    cout << "Label V Prime Covering Literal" << endl;
     for (auto i : essential) {
         cout << i->GetLabel() << " ";
         cout << i->GetV() << " ";
         cout << i->GetPrime() << " ";
         cout << i->GetCovering() << " ";
+        cout << i->GetLiteral() << " ";
         /*
          *cout << bitset<BITSETLEN>(i->GetValue()) << " ";
          *cout << bitset<BITSETLEN>(i->GetMask()) << endl;
