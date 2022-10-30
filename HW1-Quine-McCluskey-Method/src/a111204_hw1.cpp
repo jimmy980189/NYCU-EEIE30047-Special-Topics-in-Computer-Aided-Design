@@ -105,13 +105,11 @@ class QM {
         multimap<int, PI*> candidate;
         multimap<int, PI*> column;
 
-        set<PI*> garbage;
+        set<PI*> garbage; // for collecting all new PI*
 
     public:
         QM() {};
         ~QM() {
-            for (auto p : pset)
-                delete p;
             for (auto p : garbage)
                 delete p;
         };
@@ -148,15 +146,7 @@ int main(int argc, char* argv[]) {
     Qm.GenPrimaryImplicant();
     Qm.ColumnCovering();
 
-    /*
-     *cout << "========[FINISHED]========" << endl;
-     *Qm.PrintEssential();
-     *cout << "---" << endl;
-     *Qm.PrintPset();
-     */
-
     Qm.GenOutputFile(argv[2]);
-
     return 0;
 }
 
@@ -193,7 +183,9 @@ void QM::ReadInputFile(const char* filename) {
             int num = stoi(line);
             int cnt = bitset<BITSETLEN>(num).count();
             allSet.insert(num);
-            table.insert({cnt, new PI(num, 0, bitset<BITSETLEN>(num).to_string())});
+            PI* tmp = new PI(num, 0, bitset<BITSETLEN>(num).to_string());
+            table.insert({cnt, tmp});
+            garbage.insert(tmp);
         }
     }
 
@@ -223,19 +215,10 @@ void QM::GenOutputFile(const char* filename) {
         output << slice << endl;
     }
     
-    cout << "literal=" << literal << endl;
     output << "literal=" << literal << endl;
 
     output.close();
 }
-
-
-/*
- *bool cmp(int a, int b) {
- *    return bitset<BITSETLEN>(a).count() < bitset<BITSETLEN>(b).count();
- *}
- *sort(this->allSet.begin(), this->allSet.end(), cmp);
- */
 
 void QM::GenPrimaryImplicant() {
 
@@ -268,7 +251,7 @@ void QM::GenPrimaryImplicant() {
                             }
                             ++idx;
                         }
-                        candidate.insert({same.count(), new PI((int)same.to_ulong(), (int)mask.to_ulong(), tmp, record)});
+                        candidate.insert({same.count(), new PI((int) same.to_ulong(), (int) mask.to_ulong(), tmp, record)});
                     }
                 }
             }
@@ -283,6 +266,8 @@ void QM::GenPrimaryImplicant() {
         table.clear();
         table = candidate;
     }
+    for (auto it : candidate)
+        garbage.insert(it.second);
 
     table.clear();
     candidate.clear();
@@ -295,25 +280,14 @@ void QM::ColumnCovering() {
     InitColumn();
     uncover = onSet;
 
-    cout << " --Init-- " << endl;
-    PrintPset();
-    PrintColumn();
-    PrintUncover();
-
     while (uncover.size() > 1) {
-        cout << "[Iteration] uncover size: " << uncover.size() << endl;
         FindEssential();
-        cout << "check " << uncover.size() << " ";
-        PrintUncover();
+
         if (uncover.size() > 1)
             RowReduction();
-        PrintUncover();
-        PrintColumn();
     }
 
     if (uncover.size() == 1) {
-        cout << "uncover: " << uncover.size() << endl;
-        cout << "column: " << column.size() << endl;
         PI* tmp = NULL;
         for (auto i : column)
             if (i.second->GetLiteral() < min) {
@@ -321,17 +295,9 @@ void QM::ColumnCovering() {
                 tmp = i.second;
             }
 
-        cout << tmp->GetV() << endl;
         literal += tmp->GetLiteral();
         essential.insert(tmp);
     }
-
-    /*
-     *cout << "---" << endl;
-     *cout << "onSet: " << onSet.size() << endl;
-     *cout << "uncover: " << uncover.size() << endl;
-     *cout << "column: " << column.size() << endl;
-     */
 }
 
 void QM::InitColumn() {
@@ -374,16 +340,12 @@ void QM::FindEssential() {
         if (column.count(on) == 1) {
             auto f = column.find(on);
 
-            cout << "ADD " << f->second->GetLabel() << " to essential. Remove ";
-
             f->second->SetCovering(true);
             essential.insert(f->second);
             literal += f->second->GetLiteral();
 
             auto tmp = f->second->GetPiCover();
             for (auto i : tmp) {
-
-                cout << i << " ";
 
                 set<int>::iterator del = uncover.find(i);
                 if (del != uncover.end())
@@ -395,10 +357,6 @@ void QM::FindEssential() {
                     it = column.erase(it);
                 }
             }
-            cout << endl;
-        }
-        else if (onSet.size() == 1) {
-
         }
     }
     onSet = uncover;
@@ -410,9 +368,6 @@ void QM::RowReduction() {
     for (auto i : column) {
         for (auto j : column) {
             if (i.second != j.second && i.second->IsCoverIncludedIn(uncover, j.second)) {
-                cout << "MARKED " << i.second->GetLabel() << " as DELETED ";
-                cout << "Since it is a subset of " << j.second->GetLabel() << " ";
-                j.second->PrintCover();
                 i.second->SetDeleted(true);
                 del.insert(i.first);
                 break;
@@ -421,10 +376,8 @@ void QM::RowReduction() {
     }
 
     for (multimap<int, PI*>::iterator it = column.begin(); it != column.end(); )
-        if (it->second->GetDeleted()) {
-            cout << "DELETED " << it->second->GetLabel() << endl;
+        if (it->second->GetDeleted())
             it = column.erase(it);
-        }
         else 
             ++it;
 }
@@ -487,10 +440,8 @@ void QM::PrintPset() {
         cout << i->GetPrime() << " ";
         cout << i->GetCovering() << " ";
         cout << i->GetLiteral() << " ";
-        /*
-         *cout << bitset<BITSETLEN>(i->GetValue()) << " ";
-         *cout << bitset<BITSETLEN>(i->GetMask()) << endl;
-         */
+        cout << bitset<BITSETLEN>(i->GetValue()) << " ";
+        cout << bitset<BITSETLEN>(i->GetMask()) << endl;
         i->PrintCover();
     }
 }
@@ -504,10 +455,8 @@ void QM::PrintEssential() {
         cout << i->GetPrime() << " ";
         cout << i->GetCovering() << " ";
         cout << i->GetLiteral() << " ";
-        /*
-         *cout << bitset<BITSETLEN>(i->GetValue()) << " ";
-         *cout << bitset<BITSETLEN>(i->GetMask()) << endl;
-         */
+        cout << bitset<BITSETLEN>(i->GetValue()) << " ";
+        cout << bitset<BITSETLEN>(i->GetMask()) << endl;
         i->PrintCover();
     }
 }
