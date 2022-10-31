@@ -144,7 +144,6 @@ int main(int argc, char* argv[]) {
 
     QM Qm;
     Qm.ReadInputFile(argv[1]);
-    Qm.PrintOnSet();
 
     Qm.GenPrimaryImplicant();
     Qm.ColumnCovering();
@@ -291,7 +290,6 @@ void QM::ColumnCovering() {
     }
 
     if (uncover.size() == 1) {
-        cout << (*uncover.begin()) << endl;
         PI* tmp = NULL;
         for (auto i : column)
             if (i.second->GetLiteral() < min) {
@@ -299,18 +297,10 @@ void QM::ColumnCovering() {
                 tmp = i.second;
             }
 
-        cout << tmp->GetV() << endl;
-        tmp->PrintCover();
         literal += tmp->GetLiteral();
         check.insert(*uncover.begin());
         essential.insert(tmp);
     }
-
-    cout << "-------" << endl;
-    cout << "check:  ";
-    for (auto i : check)
-        cout << i << " ";
-    cout << endl;
 }
 
 void QM::InitColumn() {
