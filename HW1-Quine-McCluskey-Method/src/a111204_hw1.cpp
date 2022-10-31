@@ -120,9 +120,10 @@ class QM {
 
         void GenPrimaryImplicant();
         void InitColumn();
-        void RowReduction();
         void ColumnCovering();
-        void FindEssential();
+        void Reduce(int r);
+        int RowReduction();
+        int FindEssential();
 
         void Print();
         void PrintOnSet();
@@ -285,8 +286,9 @@ void QM::ColumnCovering() {
     while (uncover.size() > 1) {
         FindEssential();
 
-        if (uncover.size() > 1)
+        if (uncover.size() > 1) {
             RowReduction();
+        }
     }
 
     if (uncover.size() == 1) {
@@ -337,41 +339,71 @@ void QM::InitColumn() {
     }
 }
 
-void QM::FindEssential() {
+void QM::Reduce(int r) {
+    int minLiteral = INT_MAX;
 
-    for (auto on : onSet) {
-        if (column.count(on) == 1) {
-            auto f = column.find(on);
+    multimap<int, PI*>::iterator f;
 
-            f->second->SetCovering(true);
-            essential.insert(f->second);
-            literal += f->second->GetLiteral();
+    auto range = column.equal_range(r);
+    for (multimap<int, PI*>::iterator it = range.first; it != range.second; ++it) {
+        if (it->first < minLiteral) {
+            minLiteral = it->first;
+            f = it;
+        } 
+    }
 
-            auto tmp = f->second->GetPiCover();
-            for (auto i : tmp) {
-                check.insert(i);
+    f->second->SetCovering(true);
+    essential.insert(f->second);
+    literal += f->second->GetLiteral();
 
-                set<int>::iterator del = uncover.find(i);
-                if (del != uncover.end())
-                    uncover.erase(del);
+    auto tmp = f->second->GetPiCover();
+    for (auto i : tmp) {
+        check.insert(i);
 
-                auto range = column.equal_range(i);
-                for (multimap<int, PI*>::iterator it = range.first; it != range.second; ) {
-                    it->second->DeletePiCover(i);
-                    it = column.erase(it);
-                }
-            }
+        set<int>::iterator del = uncover.find(i);
+        if (del != uncover.end())
+            uncover.erase(del);
+
+        auto range = column.equal_range(i);
+        for (multimap<int, PI*>::iterator it = range.first; it != range.second; ) {
+            it->second->DeletePiCover(i);
+            it = column.erase(it);
         }
     }
-    onSet = uncover;
 }
 
-void QM::RowReduction() {
+int QM::FindEssential() {
+    int numDel = 0;
+    int max = INT_MIN;
+
+    for (auto on : onSet) {
+        int tmp = column.count(on);
+        if (tmp > max)
+            max = tmp;
+
+        if (tmp == 1) {
+            ++numDel;
+            Reduce(on);
+        }
+    }
+
+    if (numDel == 0) {
+        Reduce(max);
+    }
+
+    onSet = uncover;
+
+    return numDel;
+}
+
+int QM::RowReduction() {
     set<int> del;
+    int reduce = 0;
 
     for (auto i : column) {
         for (auto j : column) {
             if (i.second != j.second && i.second->IsCoverIncludedIn(uncover, j.second)) {
+                ++reduce;
                 i.second->SetDeleted(true);
                 del.insert(i.first);
                 break;
@@ -384,6 +416,8 @@ void QM::RowReduction() {
             it = column.erase(it);
         else 
             ++it;
+
+    return reduce;
 }
 
 void QM::Print() {
