@@ -1,0 +1,4 @@
+.p 0
+
+.mc 0
+literal=0

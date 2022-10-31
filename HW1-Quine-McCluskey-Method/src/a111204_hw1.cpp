@@ -98,6 +98,7 @@ class QM {
         set<int> dcSet;
         set<int> allSet;
         set<int> uncover;
+        set<int> check;
         set<PI*, PIcmp> pset;
         set<PI*, PIcmp> essential;
         multimap<int, PI*> uncoverSet;
@@ -124,6 +125,7 @@ class QM {
         void FindEssential();
 
         void Print();
+        void PrintOnSet();
         void PrintTable();
         void PrintCandidate();
         void PrintPrime();
@@ -142,6 +144,7 @@ int main(int argc, char* argv[]) {
 
     QM Qm;
     Qm.ReadInputFile(argv[1]);
+    Qm.PrintOnSet();
 
     Qm.GenPrimaryImplicant();
     Qm.ColumnCovering();
@@ -288,6 +291,7 @@ void QM::ColumnCovering() {
     }
 
     if (uncover.size() == 1) {
+        cout << (*uncover.begin()) << endl;
         PI* tmp = NULL;
         for (auto i : column)
             if (i.second->GetLiteral() < min) {
@@ -295,9 +299,18 @@ void QM::ColumnCovering() {
                 tmp = i.second;
             }
 
+        cout << tmp->GetV() << endl;
+        tmp->PrintCover();
         literal += tmp->GetLiteral();
+        check.insert(*uncover.begin());
         essential.insert(tmp);
     }
+
+    cout << "-------" << endl;
+    cout << "check:  ";
+    for (auto i : check)
+        cout << i << " ";
+    cout << endl;
 }
 
 void QM::InitColumn() {
@@ -346,6 +359,7 @@ void QM::FindEssential() {
 
             auto tmp = f->second->GetPiCover();
             for (auto i : tmp) {
+                check.insert(i);
 
                 set<int>::iterator del = uncover.find(i);
                 if (del != uncover.end())
@@ -394,6 +408,13 @@ void QM::Print() {
     cout << "allSet: " << endl;
     for (auto i : allSet)
         cout << i << " " << bitset<BITSETLEN>(i) << " " << bitset<BITSETLEN>(i).count() << endl;
+}
+
+void QM::PrintOnSet() {
+    cout << "on-set: ";
+    for (auto i : onSet)
+        cout << i << " ";
+    cout << endl;
 }
 
 void QM::PrintUncover() {
