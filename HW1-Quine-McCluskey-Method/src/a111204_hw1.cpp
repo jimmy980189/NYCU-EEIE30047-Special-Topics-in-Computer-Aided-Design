@@ -225,7 +225,7 @@ void QM::GenOutputFile(const char* filename) {
 
 void QM::GenPrimaryImplicant() {
 
-    for (int run = 0; run < numVariables - 1; ++run) {
+    for (int run = 0; run < numVariables; ++run) {
         for (int i = 0; i < numVariables; ++i) {
             auto rangeA = table.equal_range(i);
             auto rangeB = table.equal_range(i + 1);
@@ -260,11 +260,16 @@ void QM::GenPrimaryImplicant() {
             }
         }
         
-        for (auto it : table)
-            if (it.second->GetPrime())
+        for (auto it : table) {
+            //cout << it.second->GetV() << endl;
+            if (it.second->GetPrime()) {
+                //cout << "INSERT PRIME: " << it.second->GetV() << endl;
                 pset.insert(it.second);
+            }
             else
                 garbage.insert(it.second);
+        }
+        //cout << " --- " << endl;
 
         table.clear();
         table = candidate;
@@ -282,6 +287,15 @@ void QM::ColumnCovering() {
 
     InitColumn();
     uncover = onSet;
+/*
+ *    PrintPset();
+ *    cout << "--- finish init ---" << endl;
+ *
+ *    PrintColumn();
+ *    PrintUncover();
+ *
+ *    cout << "--- start ---" << endl;
+ */
 
     while (uncover.size() > 1) {
         FindEssential();
@@ -289,6 +303,10 @@ void QM::ColumnCovering() {
         if (uncover.size() > 1) {
             RowReduction();
         }
+        /*
+         *PrintColumn();
+         *PrintUncover();
+         */
     }
 
     if (uncover.size() == 1) {
@@ -340,11 +358,16 @@ void QM::InitColumn() {
 }
 
 void QM::Reduce(int r) {
+    //cout << "REDUCE " << r << endl;
+
     int minLiteral = INT_MAX;
 
     multimap<int, PI*>::iterator f;
 
     auto range = column.equal_range(r);
+    if (range.first == range.second)
+        return;
+
     for (multimap<int, PI*>::iterator it = range.first; it != range.second; ++it) {
         if (it->first < minLiteral) {
             minLiteral = it->first;
@@ -374,21 +397,28 @@ void QM::Reduce(int r) {
 
 int QM::FindEssential() {
     int numDel = 0;
-    int max = INT_MIN;
+    int maxCnt = INT_MIN;
+    int keepOn = 0;
+        
 
+    //PrintOnSet();
     for (auto on : onSet) {
         int tmp = column.count(on);
-        if (tmp > max)
-            max = tmp;
+        if (tmp > maxCnt) {
+            maxCnt = tmp;
+            keepOn = on;
+        }
 
         if (tmp == 1) {
+            //cout << "on " << on << endl;
             ++numDel;
             Reduce(on);
         }
     }
 
     if (numDel == 0) {
-        Reduce(max);
+        //cout << "numDel " << maxCnt << endl;
+        Reduce(keepOn);
     }
 
     onSet = uncover;
