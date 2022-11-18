@@ -28,7 +28,8 @@ class Cell {
         double outputLoading = 0;
         double inputTransitionTime = 0;
         double outputTransitionTime = 0;
-        double propagationDelay = 0;
+        double propagationDelay = 0; //worst-case delay
+        double pathDelay = 0; //worst-case delay from pi to this cell
         int inDegree = 0;
         bitset<1> value = 0;
 
@@ -68,11 +69,14 @@ class Cell {
         double GetInputTransitionTime() { return inputTransitionTime; }
         double GetOutputTransitionTime() { return outputTransitionTime; }
         double GetPropagationDelay() { return propagationDelay; }
+        double GetPathDelay() { return pathDelay; }
         void SetInputCapacitance(double loading) { inputCapacitance = loading; }
         void SetOutputLoading(double loading) { outputLoading = loading; }
         void SetInputTransitionTime(double t) { inputTransitionTime = t; }
         void SetOutputTransitionTime(double t) { outputTransitionTime = t; }
         void SetPropagationDelay(double d) { propagationDelay = d; }
+        void SetPathDelay(double d) { pathDelay = d;  }
+        void AddPathDelay(double d) { pathDelay += d; }
 
         int GetInDegree() { return inDegree; }
         void SetInDegree(int d) { inDegree = d; }
@@ -82,7 +86,6 @@ class Cell {
         bitset<1> GetValue() { return value; }
         void SetValue(bitset<1> b) { value = b; }
         void ResetValue() { value.reset(); }
-
 };
 
 class Net{

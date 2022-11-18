@@ -15,6 +15,8 @@ class TimingAnalyzer {
         vector<double> index_1;
         vector<double> index_2;
 
+        vector<string> POlist;
+
     public:
         TimingAnalyzer() {}
         ~TimingAnalyzer() {
@@ -41,7 +43,10 @@ class TimingAnalyzer {
         double Interpolation(double cReq, double sReq, pair<double, double> s, pair<double, double> c, vector<double> p);
         void CalOutputLoading();
         void CalDelay(vector<int> pattern);
+        void CalDelay_t(string name);
         void CalTransition(string name);
+        void FindLongestDelay();
+        void FindShortestDelay();
 };
 
 #endif
