@@ -13,6 +13,7 @@ diff a111204_c17_delay.txt ../golden_answer/golden_c17_delay.txt
 diff a111204_c432_delay.txt ../golden_answer/golden_c432_delay.txt
 diff a111204_example_delay.txt ../golden_answer/golden_example_delay.txt
 
-#diff a111204_c17_path.txt ../golden_answer/golden_c17_path.txt
-#diff a111204_c432_path.txt ../golden_answer/golden_c432_path.txt
-#diff a111204_example_path.txt ../golden_answer/golden_example_path.txt
+echo "[START DIFF PATH]"
+diff a111204_c17_path.txt ../golden_answer/golden_c17_path.txt
+diff a111204_c432_path.txt ../golden_answer/golden_c432_path.txt
+diff a111204_example_path.txt ../golden_answer/golden_example_path.txt

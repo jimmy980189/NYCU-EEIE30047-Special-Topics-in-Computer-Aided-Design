@@ -16,13 +16,9 @@ void TimingAnalyzer::ReadNetList(const char* netlistFile) {
         exit(-1);
     }
 
-    cout << "-----------------------------" << endl;
-    cout << "Start parsing input netlist" << endl;
-    cout << "netlist filename: " << netlistFile << endl;
-    cout << "-----------------------------" << endl;
-
     string line;
-    regex replace_regex("(\\/\\/.*)|(\\/\\*[^*\\/]*\\*\\/)|(^\\s+)");
+    //regex replace_regex("(\\/\\/.*)|(\\/\\*[^*\\/]*\\*\\/)|(^\\s+)");
+    regex replace_regex("(\\/\\/.*)|(\\/\\*((?!\\*\\/).)*\\*\\/)|(^\\s+)");
     regex openComment_regex("\\/\\*[^\\*\\/]*$");
     regex closeComment_regex("([^\\*\\/]*\\*\\/)");
     regex space_regex("(\\s+)");
@@ -91,7 +87,6 @@ void TimingAnalyzer::ReadNetList(const char* netlistFile) {
                     }
                 }
                     
-                int cnt = 0;
                 auto words_begin = sregex_iterator(line.begin(), line.end(), word_regex);
                 for (sregex_iterator i = words_begin; i != sregex_iterator(); ++i) {
                     string pin = (*i++).str();
@@ -122,8 +117,6 @@ void TimingAnalyzer::ReadPat(const char* patFile) {
         cout << "Failed to open file: " << patFile << endl;
         exit(-1);
     }
-
-    cout << "----START READ PAT----" << endl;
 
     string line;
     regex word_regex("\\w+");
@@ -159,8 +152,6 @@ void TimingAnalyzer::ReadLib(const char* libFile) {
         cout << "Failed to open file: " << libFile << endl;
         exit(-1);
     }
-
-    cout << "----Start Parsing Lib----" << endl;
 
     regex word_regex("\\w+");
     regex float_regex("0.[\\d]+");
@@ -236,14 +227,8 @@ void TimingAnalyzer::GenOutputFile(const char* netlistFile) {
         caseName = filename.substr(start + 1, end - start - 1);
     }
 
-    cout << "-----------------------------" << endl;
-    cout << "Start generating output files" << endl;
-    cout << "case name: " << caseName << endl;
-    cout << "-----------------------------" << endl;
-
     GenOutputLoad(caseName);
-    GenOutputDelay(caseName);
-    GenOutputPath(caseName);
+    GenOutputDelayAndPath(caseName);
 }
 
 bool cmpLoading(Cell* a, Cell* b) {
@@ -277,43 +262,73 @@ bool cmpDelay(Cell* a, Cell* b) {
         a->GetPropagationDelay() > b->GetPropagationDelay() : a->GetInstanceNum() < b->GetInstanceNum();
 }
 
-void TimingAnalyzer::GenOutputDelay(string caseName) {
-    string filename = studentID + "_" + caseName + "_delay.txt";
-    ofstream fDelay(filename);
+void TimingAnalyzer::GenOutputDelayAndPath(string caseName) {
+    string filenameDelay = studentID + "_" + caseName + "_delay.txt";
+    string filenamePath = studentID + "_" + caseName + "_path.txt";
+
+    ofstream fDelay(filenameDelay);
+    ofstream fPath(filenamePath);
+
     if (fDelay.fail()) {
-        cout << "Failed to open file: " << filename << endl;
+        cout << "Failed to open file: " << filenameDelay << endl;
+        exit(-1);
+    }
+    if (fPath.fail()) {
+        cout << "Failed to open file: " << filenamePath << endl;
         exit(-1);
     }
 
-    for (int i = 0; i < patterns.size(); ++i) {
-        vector<Cell*> sorted;
+    for (size_t i = 0; i < patterns.size(); ++i) {
         CalDelay(patterns[i]);
-        for (auto i : cells)
-            sorted.push_back(i.second);
-        sort(sorted.begin(), sorted.end(), cmpDelay);
-    
-        for (auto i : sorted) {
-            fDelay << i->GetName() << " " << i->GetValue() << " ";
-            fDelay << i->GetPropagationDelay() << " " << i->GetOutputTransitionTime() << endl;
-        }
-
-        fDelay << endl;
+        GenOutputDelay_t(fDelay);
+        GenOutputPath_t(fPath);
     }
 
     fDelay.close();
+    fPath.close();
 }
 
-void TimingAnalyzer::GenOutputPath(string caseName) {
-    string filename = studentID + "_" + caseName + "_path.txt";
-    ofstream fPath(filename);
-    if (fPath.fail()) {
-        cout << "Failed to open file: " << filename << endl;
-        exit(-1);
-    }
-    cout << "----START FINDING LONGEST PATH----" << endl;
-    FindLongestDelay();
+void TimingAnalyzer::GenOutputDelay_t(ofstream& fDelay) {
+    vector<Cell*> sorted;
 
-    fPath.close();
+    for (auto c : cells)
+        sorted.push_back(c.second);
+
+    sort(sorted.begin(), sorted.end(), cmpDelay);
+
+    for (auto c : sorted) {
+        fDelay << c->GetName() << " " << c->GetValue() << " ";
+        fDelay << c->GetPropagationDelay() << " " << c->GetOutputTransitionTime() << endl;
+    }
+    fDelay << endl;
+}
+
+void TimingAnalyzer::GenOutputPath_t(ofstream& fPath) {
+    double delay;
+    pair<double, list<string>> path;
+    int cnt = 0;
+
+    path = FindLongestDelay();
+    fPath << "Longest delay = " << path.first << ", the path is: ";
+    cnt = 0;
+    for (auto i : path.second)
+        if (cnt++ == 0)
+            fPath << i;
+        else
+            fPath << " -> " << i;
+    fPath << endl;
+
+    path = FindShortestDelay();
+    fPath << "Shortest delay = " << path.first << ", the path is: ";
+    cnt = 0;
+    for (auto i : path.second)
+        if (cnt++ == 0)
+            fPath << i;
+        else
+            fPath << " -> " << i;
+    fPath << endl;
+
+    fPath << endl;
 }
 
 void TimingAnalyzer::CalOutputLoading() {
@@ -333,6 +348,8 @@ void TimingAnalyzer::CalOutputLoading() {
                 case INV:
                     gate = "INVX1";
                     break;
+                default:
+                    break;
             }
             sum += libs[gate]->GetCapacitance(j.first);
         }
@@ -343,7 +360,6 @@ void TimingAnalyzer::CalOutputLoading() {
 double TimingAnalyzer::LookUp(string cell, string tableName) {
     double inputTransitionTime = cells[cell]->GetInputTransitionTime();
     double outputLoading = cells[cell]->GetOutputLoading();
-    double p0, p1, p2, p3;
     pair<double, double> c;
     pair<double, double> s;
     string gate;
@@ -358,9 +374,11 @@ double TimingAnalyzer::LookUp(string cell, string tableName) {
         case INV:
             gate = "INVX1";
             break;
+        default:
+            break;
     }
 
-    int i, j;
+    long unsigned int i, j;
     for (i = 0; i < index_1.size(); ++i)
         if (outputLoading < index_1[i])
             break;
@@ -407,12 +425,12 @@ void TimingAnalyzer::CalDelay(vector<int> pattern) {
     Cell* pre1 = NULL;
     double t, t0, t1;
 
-    cout << "----START CAL DELAY----" << endl;
-
-    for (int i = 0; i < pattern.size(); ++i) {
+    for (size_t i = 0; i < pattern.size(); ++i) {
         Cell* pi = new Cell(inputSeq[i], PI, pattern[i]);
         pi->SetOutputTransitionTime(0);
         nets[inputSeq[i]]->AddPrecceding(pair<string, Cell*>(inputSeq[i], pi));
+
+        garbage.push_back(pi);
     }
 
     for (auto c : cells) {
@@ -485,6 +503,8 @@ void TimingAnalyzer::CalDelay(vector<int> pattern) {
                 t = pre0->GetOutputTransitionTime();
                 delay = pre0->GetPathDelay() + pre0->GetPropagationDelay();
                 break;
+            default:
+                break;
         }
         cells[cell]->SetInputTransitionTime(t);
 
@@ -492,9 +512,11 @@ void TimingAnalyzer::CalDelay(vector<int> pattern) {
         cells[cell]->SetOutputTransitionTime(LookUp(cell, table));
 
         table = cells[cell]->GetValue() == 1 ? "cell_rise" : "cell_fall";
-        cells[cell]->SetPropagationDelay(LookUp(cell, table));
+        double propagationDelay = LookUp(cell, table);
+        cells[cell]->SetPropagationDelay(propagationDelay);
 
         cells[cell]->SetPathDelay(delay);
+        cells[cell]->SetLongestDelay(delay + propagationDelay);
 
         for (auto i : cur->GetOutput()->GetSucceding())
             i.second->DecrInDegree();
@@ -504,17 +526,66 @@ void TimingAnalyzer::CalDelay(vector<int> pattern) {
         c.second->SetInDegree(backup[c.second->GetName()]);
 }
 
-void TimingAnalyzer::FindLongestDelay() {
-    vector<string> seq;
+pair<double, list<string>> TimingAnalyzer::FindLongestDelay() {
+    list<string> seq;
+    Net* cur = NULL;
+    string net;
+    string maxCell;
+    double maxDelay = 0;
+
+    //Find PO to backtrack
     for (auto net : POlist) {
-        for (auto cptr : nets[net]->GetPrecceding().second->GetAllInput()) {
-            cout << cptr->GetName() << endl;
+        Cell* tmp = nets[net]->GetPrecceding().second;
+        if (tmp->GetLongestDelay() > maxDelay) {
+            maxDelay = tmp->GetLongestDelay();
+            maxCell = tmp->GetName();
         }
-        break; 
+    }
+    net = cells[maxCell]->GetOutput()->GetName();
+    seq.push_front(net);
+    cur = nets[net];
+
+    while (cur->GetType() != IN) {
+        for (auto i : cur->GetPrecceding().second->GetAllInput()) {
+            if (i->GetPrecceding().second->GetLongestDelay() == cur->GetPrecceding().second->GetPathDelay()) {
+                seq.push_front(i->GetName());
+                cur = i;
+                break;
+            }
+        }
     }
 
+    return {maxDelay, seq};
 }
 
-void TimingAnalyzer::FindShortestDelay() {
+pair<double, list<string>> TimingAnalyzer::FindShortestDelay() {
+    list<string> seq;
+    Net* cur = NULL;
+    string net;
+    string minCell;
+    double minDelay = INT_MAX;
 
+    //Find PO to backtrack
+    for (auto net : POlist) {
+        Cell* tmp = nets[net]->GetPrecceding().second;
+        if (tmp->GetLongestDelay() < minDelay) {
+            minDelay = tmp->GetLongestDelay();
+            minCell = tmp->GetName();
+        }
+    }
+    net = cells[minCell]->GetOutput()->GetName();
+    seq.push_front(net);
+    cur = nets[net];
+
+    while (cur->GetType() != IN) {
+        for (auto i : cur->GetPrecceding().second->GetAllInput()) {
+            if (i->GetPrecceding().second->GetLongestDelay() == cur->GetPrecceding().second->GetPathDelay()) {
+                seq.push_front(i->GetName());
+                cur = i;
+                break;
+            }
+        }
+    }
+
+    return {minDelay, seq};
 }

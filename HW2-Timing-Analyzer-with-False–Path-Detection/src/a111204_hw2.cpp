@@ -4,9 +4,11 @@ string studentID("a111204");
 
 int main(int argc, char* argv[]) {
     
-    const char* netlistFile;
-    const char* patFile;
-    const char* libFile;
+    /*
+     *const char* netlistFile;
+     *const char* patFile;
+     *const char* libFile;
+     */
 
     if (argc != 6) {
         cout << "./" << studentID << ".o [netlist_file] -p [input.pat] -l [testlib.lib]" << endl;

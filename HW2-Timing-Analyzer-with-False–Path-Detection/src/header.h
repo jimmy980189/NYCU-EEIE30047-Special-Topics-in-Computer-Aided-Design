@@ -6,6 +6,7 @@
 #include <map>
 #include <unordered_map>
 #include <set>
+#include <list>
 #include <cmath>
 #include <climits>
 #include <cstring>
@@ -26,10 +27,15 @@ class Cell {
         Net* output;
         double inputCapacitance = 0;
         double outputLoading = 0;
+
         double inputTransitionTime = 0;
         double outputTransitionTime = 0;
-        double propagationDelay = 0; //worst-case delay
-        double pathDelay = 0; //worst-case delay from pi to this cell
+
+        double propagationDelay = 0; //look up table
+        double pathDelay = 0; //from pi to this cell
+        double longestDelay = 0;
+        double shortestDelay = 0;
+                              
         int inDegree = 0;
         bitset<1> value = 0;
 
@@ -70,6 +76,8 @@ class Cell {
         double GetOutputTransitionTime() { return outputTransitionTime; }
         double GetPropagationDelay() { return propagationDelay; }
         double GetPathDelay() { return pathDelay; }
+        double GetLongestDelay() { return longestDelay; }
+        double GetShortestDelay() { return shortestDelay; }
         void SetInputCapacitance(double loading) { inputCapacitance = loading; }
         void SetOutputLoading(double loading) { outputLoading = loading; }
         void SetInputTransitionTime(double t) { inputTransitionTime = t; }
@@ -77,6 +85,8 @@ class Cell {
         void SetPropagationDelay(double d) { propagationDelay = d; }
         void SetPathDelay(double d) { pathDelay = d;  }
         void AddPathDelay(double d) { pathDelay += d; }
+        void SetLongestDelay(double d) { longestDelay = d; }
+        void SetShortestDelay(double d) { shortestDelay = d; }
 
         int GetInDegree() { return inDegree; }
         void SetInDegree(int d) { inDegree = d; }

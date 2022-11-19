@@ -6,7 +6,7 @@ module           c17 (N1, N2, N3, N6, N7, N22, N23);
 	output /*adasd*//*dasd*/ N22, N/*;*/23;
 // asdsadsad sadsadsadsadsad
     NOR2X1      U8 (./*.A0(fucku*/A1(n8),   .A2(n9),  .ZN(N23));
-	  NOR2X1 U9 (.A1(N2), /*sadsadas*/.A2(N7), .ZN(n9));//dhjikb/*
+	  NOR2X1 U9 /*ffffgfg/*ddasdda*/(.A1(N2), /*sadsadas*/.A2(N7), .ZN(n9));//dhjikb/*
 	INVX1 U10 (.I(n10), /*AAAAdsadsadsad*/ .ZN(n8));   //dgbou/*missme?*/
     // dasdsadsadsad 
             NANDX1 U11 (.A1(n11), .A2(n12),
