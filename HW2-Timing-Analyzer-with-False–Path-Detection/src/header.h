@@ -21,7 +21,7 @@ class Net;
 class Cell {
     private:
         string name;
-        int instanceNum;
+        int instanceNum = 0;
         cellType type;
         vector<Net*> input;
         Net* output;
@@ -31,10 +31,9 @@ class Cell {
         double inputTransitionTime = 0;
         double outputTransitionTime = 0;
 
-        double propagationDelay = 0; //look up table
-        double pathDelay = 0; //from pi to this cell
-        double longestDelay = 0;
-        double shortestDelay = 0;
+        double propagationDelay = 0;    // delay from look up table
+        double pathDelay = 0;           // delay from pi to this cell
+        double longestDelay = 0;        // sum of the above two
                               
         int inDegree = 0;
         bitset<1> value = 0;
@@ -77,16 +76,13 @@ class Cell {
         double GetPropagationDelay() { return propagationDelay; }
         double GetPathDelay() { return pathDelay; }
         double GetLongestDelay() { return longestDelay; }
-        double GetShortestDelay() { return shortestDelay; }
         void SetInputCapacitance(double loading) { inputCapacitance = loading; }
         void SetOutputLoading(double loading) { outputLoading = loading; }
         void SetInputTransitionTime(double t) { inputTransitionTime = t; }
         void SetOutputTransitionTime(double t) { outputTransitionTime = t; }
         void SetPropagationDelay(double d) { propagationDelay = d; }
         void SetPathDelay(double d) { pathDelay = d;  }
-        void AddPathDelay(double d) { pathDelay += d; }
         void SetLongestDelay(double d) { longestDelay = d; }
-        void SetShortestDelay(double d) { shortestDelay = d; }
 
         int GetInDegree() { return inDegree; }
         void SetInDegree(int d) { inDegree = d; }
@@ -113,10 +109,10 @@ class Net{
 
         string GetName() { return name; }
         netType GetType() { return type; }
-        void AddSucceding(pair<string, Cell*> p) { succeeding.push_back(p); }
-        vector<pair<string, Cell*>> GetSucceding() { return succeeding; }
         void AddPrecceding(pair<string, Cell*> p) { preceeding = p; }
+        void AddSucceding(pair<string, Cell*> p) { succeeding.push_back(p); }
         pair<string, Cell*> GetPrecceding() { return preceeding; }
+        vector<pair<string, Cell*>> GetSucceding() { return succeeding; }
 };
 
 class Lib {
@@ -140,9 +136,9 @@ class Lib {
         vector<double> GetP(string name, int idxI, int idxJ) {
             vector<int> idx;
             vector<double> p(4, 0);
-            //cout << "GetP(): " << name << endl;
             vector<int> pos = { 0, 3, 2, 1 };
             int cnt = 0;
+
             for (int j = idxJ; j <= idxJ + 1; ++j)
                 for (int i = idxI; i <= idxI + 1; ++i)
                     p[pos[cnt++]] = table[name][j * 7 + i];

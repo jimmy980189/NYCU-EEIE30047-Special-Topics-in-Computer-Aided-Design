@@ -18,86 +18,105 @@ void TimingAnalyzer::ReadNetList(const char* netlistFile) {
 
     string line;
     //regex replace_regex("(\\/\\/.*)|(\\/\\*[^*\\/]*\\*\\/)|(^\\s+)");
+    //regex openComment_regex("\\/\\*[^\\*\\/]*$");
+    //regex closeComment_regex("([^\\*\\/]*\\*\\/)");
     regex replace_regex("(\\/\\/.*)|(\\/\\*((?!\\*\\/).)*\\*\\/)|(^\\s+)");
-    regex openComment_regex("\\/\\*[^\\*\\/]*$");
-    regex closeComment_regex("([^\\*\\/]*\\*\\/)");
+    //regex openComment_regex("\\/\\*((?!\\*\\/).)*");
+    //regex closeComment_regex("(((?!\\*\\/).)*\\*\\/)");
+    regex openComment_regex("\\/\\*.*");
+    regex closeComment_regex(".*\\*\\/");
     regex space_regex("(\\s+)");
     regex word_regex("\\w+");
     regex cell_regex("(NOR2\\w*)|(NAND\\w*)|(INV\\w*)");
-    regex pin_regex("(output)|(input)|(wire)");
+    regex wire_regex("(output)|(input)|(wire)");
     smatch firstWord;
     bool comment = false;
+    bool declareMode = false;
+    bool cellMode = false;
+    bool pinMode = false;
 
     while(getline(fNetlist, line)) {
 
         line = regex_replace(line, replace_regex, "");
         line = regex_replace(line, space_regex, " ");
         Cell* c;
-        cellType type;
+        Net* n;
+        cellType ctype;
+        netType ntype;
 
         if (line.size()) {
-            if (regex_search(line, firstWord, pin_regex)) {
+            if (comment) {
+                if (regex_search(line, firstWord, closeComment_regex)) {
+                    line = regex_replace(line, closeComment_regex, "");
+                    comment = false;
+                }
+                else
+                    continue;
+            }
+            if (regex_search(line, firstWord, openComment_regex)) {
+                line = regex_replace(line, openComment_regex, "");
+                comment = true;
+            }
 
-                netType type;
+            if (regex_search(line, firstWord, wire_regex)) {
+                declareMode = true;
+
                 if (firstWord.str() == "input")
-                    type = IN;
+                    ntype = IN;
                 else if (firstWord.str() == "output")
-                    type = OUT;
+                    ntype = OUT;
                 if (firstWord.str() == "wire")
-                    type = WIRE;
+                    ntype = WIRE;
 
-                Net* n;
-                auto words_begin = sregex_iterator(line.begin() + firstWord.str().length(), line.end(), word_regex);
+            }
+            else if (regex_search(line, firstWord, cell_regex)) {
+                declareMode = false;
+                cellMode = true;
+                pinMode = false;
+
+                if (line.substr(0, 3) == "NAN")
+                    ctype = NAND;
+                else if (line.substr(0, 3) == "NOR")
+                    ctype = NOR;
+                else if (line.substr(0, 3) == "INV")
+                    ctype = INV;
+            }
+
+            auto words_begin = sregex_iterator(line.begin() + firstWord.str().length(), line.end(), word_regex);
+            if (declareMode) {
+                //auto words_begin = sregex_iterator(line.begin() + firstWord.str().length(), line.end(), word_regex);
                 for (sregex_iterator i = words_begin; i != sregex_iterator(); ++i) {
                     string name = (*i).str();
-                    n = new Net(name, type);
+                    n = new Net(name, ntype);
                     nets.insert({name, n});
-                    if (type == OUT)
+                    if (ntype == OUT)
                         POlist.push_back(name);
                 }
             }
-            else {
+            else if (cellMode) {
+                //auto words_begin = sregex_iterator(line.begin() + firstWord.str().length(), line.end(), word_regex);
+                if (words_begin != sregex_iterator()) {
+                    string name = (*words_begin).str();
+                    c = new Cell(name, ctype);
+                    cells.insert({name, c});
+                    cellMode = false;
+                    pinMode = true;
+                } 
+            }
 
-                if (comment && !regex_search(line, firstWord, closeComment_regex)) { 
-                    continue; 
-                }
-
-                if (regex_search(line, firstWord, openComment_regex)) {
-                    comment = true;
-                }
-                else if (regex_search(line, firstWord, closeComment_regex)) {
-                    comment = false;
-                    continue;
-                }
-
-                if (regex_search(line, firstWord, cell_regex)) {
-                    if (line.substr(0, 3) == "NAN")
-                        type = NAND;
-                    else if (line.substr(0, 3) == "NOR")
-                        type = NOR;
-                    else if (line.substr(0, 3) == "INV")
-                        type = INV;
-
-                    auto words_begin = sregex_iterator(line.begin() + firstWord.str().length(), line.end(), word_regex);
-                    if (words_begin != sregex_iterator()) {
-                        string name = (*words_begin).str();
-                        c = new Cell(name, type);
-                        cells.insert({name, c});
-                        ++words_begin;
-                    }
-                }
-                    
+            if (pinMode) {
                 auto words_begin = sregex_iterator(line.begin(), line.end(), word_regex);
                 for (sregex_iterator i = words_begin; i != sregex_iterator(); ++i) {
-                    string pin = (*i++).str();
-                    string net = (*i).str(); 
+                    string pin = (*i).str();
                     if (pin == "ZN") {
+                        string net = (*++i).str(); 
                         c->AddOutput(nets[net]);
                         nets[net]->AddPrecceding(pair<string, Cell*>(pin, c));
                         if(nets[net]->GetType() == OUT)
                             c->SetOutputLoading(0.03);
                     }
                     else if ((pin == "I") || (pin == "A1") || (pin == "A2")) {
+                        string net = (*++i).str(); 
                         c->AddInput(nets[net]);
                         nets[net]->AddSucceding(pair<string, Cell*>(pin, c));
                         if (nets[net]->GetType() != IN)
@@ -304,7 +323,6 @@ void TimingAnalyzer::GenOutputDelay_t(ofstream& fDelay) {
 }
 
 void TimingAnalyzer::GenOutputPath_t(ofstream& fPath) {
-    double delay;
     pair<double, list<string>> path;
     int cnt = 0;
 

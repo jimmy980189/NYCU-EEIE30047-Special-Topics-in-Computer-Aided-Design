@@ -42,8 +42,8 @@ class TimingAnalyzer {
         double Interpolation(double cReq, double sReq, pair<double, double> s, pair<double, double> c, vector<double> p);
         void CalOutputLoading();
         void CalDelay(vector<int> pattern);
-        void CalDelay_t(string name);
-        void CalTransition(string name);
+
+        // return { maxDelay/minDelay, path }
         pair<double, list<string>> FindLongestDelay();
         pair<double, list<string>> FindShortestDelay();
 };
