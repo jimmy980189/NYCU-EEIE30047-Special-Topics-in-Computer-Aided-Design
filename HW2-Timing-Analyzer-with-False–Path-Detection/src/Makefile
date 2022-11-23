@@ -1,6 +1,5 @@
 CC = g++
-CPPFLAGS = -g -std=c++11 
-#CPPFLAGS = -g -std=c++11 -Wall -Werror -Wextra
+CPPFLAGS = -g -std=c++11 -Wall -Werror -Wextra
 
 all:	a111204.o
 
