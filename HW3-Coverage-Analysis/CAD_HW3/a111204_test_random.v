@@ -17,6 +17,8 @@ end
 
 cpu cc(.in(in), .clk(clk), .reset(reset), .out(out));
 
+integer count;
+
 initial begin
 	in    =8'b00000000;
 	reset =1'b1;
@@ -26,7 +28,10 @@ initial begin
      
 //write your test pattern----------------
 
-
+    for(count = 0; count < 20; count = count + 1) begin
+#12 in    = $random;
+    reset = $random;
+    end
 
 //----------------------------------------
 #10  $finish;

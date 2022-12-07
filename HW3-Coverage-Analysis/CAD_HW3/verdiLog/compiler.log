@@ -1,0 +1,9 @@
+*design* DebussyLib (btIdent Verdi_O-2018.09)
+Command arguments:
+    +define+verilog
+    /edahome/course/2022CAD/2022CAD021/NYCU-EEIE30047-Special-Topics-in-Computer-Aided-Design/HW3-Coverage-Analysis/CAD_HW3/cpu_bug.v
+
+Highest level modules:
+cpu
+
+Total	0 error(s),   0 warning(s)

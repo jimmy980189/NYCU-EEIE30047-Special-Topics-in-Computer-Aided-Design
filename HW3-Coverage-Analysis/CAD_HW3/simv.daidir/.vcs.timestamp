@@ -1,0 +1,75 @@
+0 
+24
+-Mamsrun=
+-Masflags=
+-Mcc=gcc
+-Mcfl= -pipe -fPIC -O -I/usr/cad/synopsys/vcs/cur/include
+-Mcplusplus=g++
+-Mcrt0=
+-Mcrtn=
+-Mcsrc=
+-Mexternalobj=
+-Mldflags= -rdynamic
+-Mobjects= /usr/cad/synopsys/vcs/cur/linux64/lib/libvirsim.so /usr/cad/synopsys/vcs/cur/linux64/lib/liberrorinf.so /usr/cad/synopsys/vcs/cur/linux64/lib/libsnpsmalloc.so /usr/cad/synopsys/vcs/cur/linux64/lib/libvfs.so
+-Mout=simv
+-Msaverestoreobj=/usr/cad/synopsys/vcs/cur/linux64/lib/vcs_save_restore_new.o
+-Msyslibs=-ldl
+-Mvcsaceobjs=
+-Mxcflags= -pipe -fPIC -I/usr/cad/synopsys/vcs/cur/include
+-cm
+-full64
+-gen_obj
+-picarchive
+/usr/cad/synopsys/vcs/cur/linux64/bin/vcs1
+a111204_cpu.v
+a111204_test.v
+line+tgl+fsm
+36
+sysc_uni_pwd=/edahome/course/2022CAD/2022CAD021/NYCU-EEIE30047-Special-Topics-in-Computer-Aided-Design/HW3-Coverage-Analysis/CAD_HW3
+VMR_MODE_FLAG=64
+VENDOR=unknown
+VCS_MODE_FLAG=64
+VCS_HOME=/usr/cad/synopsys/vcs/cur
+VCS_DEPTH=0
+VCS_CC=gcc
+VCS_ARG_ADDED_FOR_TMP=1
+VCS_ARCH=linux64
+UNAME=/bin/uname
+TOOL_HOME=/usr/cad/synopsys/vcs/cur/linux64
+SSH_TTY=/dev/pts/44
+SSH_CONNECTION=1.34.133.224 62214 140.113.212.154 22
+SSH_CLIENT=1.34.133.224 62214 22
+SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
+SHLIB_PATH=/usr/cad/synopsys/verdi/cur/share/PLI/IUS/LINUX
+SELINUX_USE_CURRENT_RANGE=
+SELINUX_ROLE_REQUESTED=
+SELINUX_LEVEL_REQUESTED=
+SCRNAME=vcs
+SCRIPT_NAME=vcs
+REMOTEHOST=1-34-133-224.hinet-ip.hinet.net
+QTLIB=/usr/lib64/qt-3.3/lib
+QTINC=/usr/lib64/qt-3.3/include
+QTDIR=/usr/lib64/qt-3.3
+OVA_UUM=0
+OSTYPE=linux
+MODULESHOME=/usr/share/Modules
+MODULEPATH=/usr/share/Modules/modulefiles:/etc/modulefiles
+LOADEDMODULES=
+LESSOPEN=||/usr/bin/lesspipe.sh %s
+LC_ALL=C
+HOSTTYPE=x86_64-linux
+G_BROKEN_FILENAMES=1
+GROUP=2022CAD021
+CVS_RSH=ssh
+0
+3
+1670416196 a111204_cpu.v
+1670417224 a111204_test.v
+1535684842 /usr/cad/synopsys/vcs/cur/include/cm_vcsd.tab
+4
+1535687234 /usr/cad/synopsys/vcs/cur/linux64/lib/libvirsim.so
+1535686419 /usr/cad/synopsys/vcs/cur/linux64/lib/liberrorinf.so
+1535686343 /usr/cad/synopsys/vcs/cur/linux64/lib/libsnpsmalloc.so
+1535686407 /usr/cad/synopsys/vcs/cur/linux64/lib/libvfs.so
+1670417240 simv.daidir
+-1 partitionlib

@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<!DOCTYPE cov SYSTEM "ucdb_srcinfo.dtd">
+  <srcinfo name="/edahome/course/2022CAD/2022CAD021/NYCU-EEIE30047-Special-Topics-in-Computer-Aided-Design/HW3-Coverage-Analysis/CAD_HW3"  >
+    <ucapi_version  major_ver="13"  minor_ver="1"  patch_str="O-2018.09"  />
+      <fileinfo name="a111204_test.v"  id="0"  />
+      <fileinfo name="a111204_cpu.v"  id="1"  />
+    </srcinfo>

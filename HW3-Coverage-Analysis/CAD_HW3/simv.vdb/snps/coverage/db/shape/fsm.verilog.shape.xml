@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE cov SYSTEM "ucdb_fsm.dtd">
+  <fsm count="0"  noconst="0"  >
+    <ucapi_version  major_ver="13"  minor_ver="1"  patch_str="O-2018.09"  />
+      <fsmdef file="1"  name="Control"  lib=""  parameterized="1"  >
+        <fsmshape >
+          <fsmfsm name="current_state"  id="0"  width="2"  line="137"  chksum="1983426833"  >
+            <state name="ST_0"  value="parameterized"  id="0"  flag="L"  line="137"  />
+            <state name="ST_1"  value="parameterized"  id="1"  flag="L"  line="161"  />
+            <state name="ST_2"  value="parameterized"  id="2"  flag="L"  line="177"  />
+            <state name="ST_3"  value="parameterized"  id="3"  flag="L"  line="185"  />
+
+            <transition fromid="0"  toid="1"  flag="L"  line="161"  />
+            <transition fromid="0"  toid="2"  flag="L"  line="177"  />
+            <transition fromid="0"  toid="3"  flag="L"  line="185"  />
+            
+            <transition fromid="1"  toid="0"  flag="L"  line="204"  />
+            
+            <transition fromid="2"  toid="0"  flag="L"  line="209"  />
+            <transition fromid="2"  toid="1"  flag="L"  line="126"  />
+            
+            <transition fromid="3"  toid="0"  flag="L"  line="214"  />
+            <transition fromid="3"  toid="1"  flag="L"  line="126"  />
+            
+          </fsmfsm>
+        </fsmshape>
+        <fsminst name="test.cc.c1"  />
+      </fsmdef>
+          <metric_sig chksum="65346B85311F2B356F944DB142EE5F5060E09C14"  />
+    </fsm>
