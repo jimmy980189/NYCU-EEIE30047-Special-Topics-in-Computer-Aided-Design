@@ -1,0 +1,9 @@
+CADENCE IHNL11140
+$model
+PLL/pll_mix/schematic PLL/pll_mix/schematic/spectre_spice_pspice_verilog_verilogams_behavioral_functional_systemVerilog_schematic_veriloga_vhdl_vhdlams_wreal/PLL_pll_mix_config/1 pll_mix
+$endmodel
+$net
+gnd! 0
+$endnet
+$param
+$endparam

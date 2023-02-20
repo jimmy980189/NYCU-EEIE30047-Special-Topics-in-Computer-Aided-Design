@@ -1,0 +1,9 @@
+// VerilogA for PLL, cp, veriloga
+
+`include "constants.vams"
+`include "disciplines.vams"
+
+module cp;
+
+
+endmodule

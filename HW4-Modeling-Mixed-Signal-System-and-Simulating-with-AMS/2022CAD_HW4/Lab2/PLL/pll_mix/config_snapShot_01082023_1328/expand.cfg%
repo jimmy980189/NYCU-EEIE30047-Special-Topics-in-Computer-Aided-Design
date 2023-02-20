@@ -1,0 +1,28 @@
+//Revision 14
+//NOTE
+// Default config view template for AMS netlister(s) in ADE.
+// Note:
+//      Please remember to replace Top Cell Library, Cell, and View
+//      fields with the actual names used by your design.
+//END_NOTE
+
+config pll_mix;
+design PLL.pll_mix:schematic;
+liblist PLL;
+
+viewlist spectre, spice, pspice, verilog, verilogams, behavioral, functional, systemVerilog, schematic, veriloga, vhdl, vhdlams, wreal;
+stoplist symbol;
+
+
+cell PLL.cp binding PLL.cp:veriloga;
+cell PLL.divider_d binding PLL.divider_d:functional;
+cell PLL.LF binding PLL.LF:veriloga;
+cell PLL.pfd binding PLL.pfd:veriloga;
+cell PLL.sin2pulse binding PLL.sin2pulse:veriloga;
+cell PLL.stimulus_D binding PLL.stimulus_D:functional;
+cell PLL.vco binding PLL.vco:veriloga;
+
+cell analogLib.vpulse binding analogLib.vpulse:spectre;
+
+
+endconfig

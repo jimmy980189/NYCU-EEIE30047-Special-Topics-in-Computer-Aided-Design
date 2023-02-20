@@ -1,0 +1,20 @@
+ncvlog(64): 15.20-s039: (c) Copyright 1995-2017 Cadence Design Systems, Inc.
+TOOL:	ncvlog(64)	15.20-s039: Started on Jan 08, 2023 at 14:08:24 CST
+ncvlog
+    -use5x
+    -SPECIFICUNIT stimulus_D
+    -zparse /tmp/vamsZparhh2531
+    -NOWARN DLNOHV
+    -work PLL
+    -view functional
+    -nostdout
+    -logfile /edahome/course/2022CAD/2022CAD021/NYCU-EEIE30047-Special-Topics-in-Computer-Aided-Design/HW4-Modeling-Mixed-Signal-System-and-Simulating-with-AMS/2022CAD_HW4/Lab2/.cadence/dfII/TextSupport/Logs/Parser/verilog/PLL/functional/compile1.log
+    -messages
+    -cdslib /edahome/course/2022CAD/2022CAD021/NYCU-EEIE30047-Special-Topics-in-Computer-Aided-Design/HW4-Modeling-Mixed-Signal-System-and-Simulating-with-AMS/2022CAD_HW4/Lab2/cds.lib
+    /edahome/course/2022CAD/2022CAD021/NYCU-EEIE30047-Special-Topics-in-Computer-Aided-Design/HW4-Modeling-Mixed-Signal-System-and-Simulating-with-AMS/2022CAD_HW4/Lab2/PLL/stimulus_D/functional/verilog.v
+
+file: /edahome/course/2022CAD/2022CAD021/NYCU-EEIE30047-Special-Topics-in-Computer-Aided-Design/HW4-Modeling-Mixed-Signal-System-and-Simulating-with-AMS/2022CAD_HW4/Lab2/PLL/stimulus_D/functional/verilog.v
+	module PLL.stimulus_D:functional
+		errors: 0, warnings: 0
+	 writing out DPL output:
+TOOL:	ncvlog(64)	15.20-s039: Exiting on Jan 08, 2023 at 14:08:24 CST  (total: 00:00:00)

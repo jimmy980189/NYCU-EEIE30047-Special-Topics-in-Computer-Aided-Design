@@ -1,0 +1,25 @@
+//Revision 3
+//NOTE
+// Default config view template for AMS netlister(s) in ADE.
+// Note:
+//      Please remember to replace Top Cell Library, Cell, and View
+//      fields with the actual names used by your design.
+//END_NOTE
+
+config adc;
+design ADC.adc:schematic;
+liblist ADC;
+
+viewlist spectre, spice, pspice, verilog, verilogams, behavioral, functional, systemVerilog, schematic, veriloga, vhdl, vhdlams, wreal;
+stoplist symbol;
+
+
+cell ADC.comparator binding ADC.comparator:veriloga;
+cell ADC.encoder binding ADC.encoder:verilogams;
+
+cell analogLib.res binding analogLib.res:spectre;
+cell analogLib.vdc binding analogLib.vdc:spectre;
+cell analogLib.vsin binding analogLib.vsin:spectre;
+
+
+endconfig

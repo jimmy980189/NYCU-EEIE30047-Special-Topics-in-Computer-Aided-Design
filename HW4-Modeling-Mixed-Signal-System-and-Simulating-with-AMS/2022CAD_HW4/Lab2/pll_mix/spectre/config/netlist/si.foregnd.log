@@ -1,0 +1,14 @@
+Begin Incremental Netlisting Jan  8 14:06:36 2023
+INFO (OSSHNL-386): HED 'sourcefile' support is enabled by default. Set
+variable
+'hnlSourceFileDisabled to 't to disable sourcefile support.
+
+WARNING (OSSHNL-117): Ignoring switch view 'spectre' of cell 'vpulse' in library
+'analogLib', as it does not contain
+any instance. To netlist this cell, add this
+switch view to the stop list or to
+ignore any specific instance set the property
+'nlAction' to value "ignore" on
+this cell view.
+
+End netlisting Jan  8 14:06:37 2023

@@ -1,0 +1,7 @@
+"_dspfFullDesignInfo" ((("PLL" "pll_mix" "schematic")) (("PLL" "pfd" "veriloga") ("PLL" "cp" "veriloga") ("PLL" "LF" "veriloga") ("PLL" "vco" "veriloga") ("PLL" "sin2pulse" "veriloga") ("PLL" "divider_d" "functional") ("PLL" "stimulus_D" "functional")))
+"printComments" (nil nil)
+"setTopLevelAsSubckt" nil
+"termMismatch" "ignore"
+"_dspfFileToEnvOptionsMapInfo" nil
+"srcFileMappingInfo" nil
+"termDirectionMismatch" "ignore"

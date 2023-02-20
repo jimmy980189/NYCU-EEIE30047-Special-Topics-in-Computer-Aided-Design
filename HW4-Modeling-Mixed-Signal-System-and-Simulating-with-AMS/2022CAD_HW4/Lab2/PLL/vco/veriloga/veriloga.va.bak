@@ -1,0 +1,9 @@
+// VerilogA for PLL, vco, veriloga
+
+`include "constants.vams"
+`include "disciplines.vams"
+
+module vco;
+
+
+endmodule

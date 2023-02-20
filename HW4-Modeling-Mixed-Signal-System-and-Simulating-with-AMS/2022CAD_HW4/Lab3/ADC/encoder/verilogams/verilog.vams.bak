@@ -1,0 +1,54 @@
+//Verilog-AMS HDL for "ADC", "encoder" "verilogams"
+
+`include "constants.vams"
+`include "disciplines.vams"
+
+//2-bit ADC with Verilog-AMS
+module encoder (in3, in2, in1, out2, out1);
+parameter vdd = 1.0;
+input in3, in2, in1;
+output reg out2, out1;
+electrical in3, in2, in1, vout2, vout1;
+ddiscrete out1, out0;
+
+/*analog begin
+	if (V(in3) == 1) begin	//larger than 3V
+		V(vout2) <+ 1;
+		V(vout1) <+ 1;
+	end
+	else if (V(in2) == 1) begin	//larger than 2V
+		V(vout2) <+ 1;
+		V(vout1) <+ 0;
+	end
+	else if (V(in1) == 1) begin //larger than 1V
+		V(vout2) <+ 0;
+		V(vout1) <+ 1;
+	end
+	else begin 
+		V(vout2) <+ 0;
+		V(vout1) <+ 0;
+	end
+end*/
+
+analog begin
+	V(vout2) <+ 1;
+	V(vout1) <+ 1;
+ 	if (V(in3) == 1) begin
+		V(vout2) <+ 1;
+		V(vout1) <+ 1;
+	end
+	else if (V(in2) == 1) begin
+		V(vout2) <+ 1;
+	end
+	else if (V(in1) == 1) begin
+		V(vout1) <+ 1;
+	end
+end
+
+//connectmodule
+always begin @ (cross(V(vout2) - vdd / 2, +1)) out2 = 1; end
+always begin @ (cross(V(vout2) - vdd / 2, -1)) out2 = 0; end
+always begin @ (cross(V(vout1) - vdd / 2, +1)) out1 = 1; end
+always begin @ (cross(V(vout1) - vdd / 2, -1)) out1 = 0; end
+
+endmodule

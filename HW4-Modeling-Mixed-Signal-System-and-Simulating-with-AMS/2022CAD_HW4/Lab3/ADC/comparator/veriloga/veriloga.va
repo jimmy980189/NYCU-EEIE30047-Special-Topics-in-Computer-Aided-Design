@@ -1,0 +1,16 @@
+// VerilogA for ADC, comparator, veriloga
+
+`include "constants.vams"
+`include "disciplines.vams"
+
+module comparator(vin, vref, vout);
+
+input vin, vref;
+output vout;
+electrical vin, vref, vout;
+
+analog begin
+	V(vout) <+ ((V(vin) >= V(vref)) ? 1 : 0);
+end
+
+endmodule

@@ -1,0 +1,2 @@
+SOFTINCLUDE /home/EDATOOLS/cadence/IC/IC_06.17.709/share/cdssetup/cds.lib
+DEFINE PLL2 /edahome/course/2022CAD/2022CAD021/NYCU-EEIE30047-Special-Topics-in-Computer-Aided-Design/HW4-Modeling-Mixed-Signal-System-and-Simulating-with-AMS/2022CAD_HW4/PLL2

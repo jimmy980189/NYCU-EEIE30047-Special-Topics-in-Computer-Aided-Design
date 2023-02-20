@@ -1,0 +1,134 @@
+ahdlcmicompile: Compiling ahdlcmi in input.ahdlSimDB//adc919d591c2d3be85e18bd99b47d343.LF.ahdlcmi/Linux-64/ for Linux-64 with optimize using gcc on Sun Jan  8 14:06:40 CST 2023 [5.0]
+ahdlcmicompile: Generating makefile
+PATH:  /usr/cad/cadence/MMSIM/cur/tools.lnx86/cdsgcc/gcc/4.1-x86_64/install/bin:/usr/cad/cadence/MMSIM/cur/bin:/usr/cad/cadence/MMSIM/cur/tools/bin/64bit:/usr/cad/cadence/MMSIM/cur/tools/bin:/usr/cad/cadence/IC/IC_06.17.709/bin:/usr/cad/cadence/IC/IC_06.17.709/tools/bin:/usr/cad/cadence/IC/IC_06.17.709/tools/bin/64bit:/usr/cad/cadence/IC/IC_06.17.709/oa/bin:/usr/cad/cadence/IC/IC_06.17.709/tools/dfII/bin:/usr/cad/cadence/IC/IC_06.17.709/tools/dracula/bin:/usr/cad/cadence/MMSIM/cur/tools/dfII/bin:/usr/cad/cadence/INCISIV/cur/tools/bin:/usr/cad/cadence/INCISIV/cur/tools/vtools/vfault/bin:/usr/cad/cadence/INCISIV/cur/tools/dfII/bin:/usr/cad/synopsys/verdi/cur/bin:/usr/cad/synopsys/verdi/cur/nLint/bin:/usr/cad/synopsys/vcs/cur/bin:/usr/cad/synopsys/vcs/cur/linux/bin:/usr/cad/synopsys/vcs/cur/linux/util:/usr/cad/synopsys/vcs/cur/linux/flexlm:/usr/lib64/qt-3.3/bin:/usr/local/bin:/bin:/usr/bin
+LD_LIBRARY_PATH:  /usr/cad/cadence/MMSIM/cur/tools.lnx86/cdsgcc/gcc/4.1-x86_64/install/lib:/usr/cad/cadence/MMSIM/cur/tools/giganta/lib/64bit:/usr/cad/cadence/MMSIM/cur/tools/mdl/lib/64bit:/usr/cad/cadence/MMSIM/cur/tools/mmsim/lib/64bit:/usr/cad/cadence/MMSIM/cur/tools/tcltk-8.4.20/lib/64bit:/usr/cad/cadence/MMSIM/cur/tools/inca/lib/64bit:/usr/cad/cadence/MMSIM/cur/tools/spectre/lib/64bit:/usr/cad/cadence/MMSIM/cur/tools/dfII/lib/64bit:/usr/cad/cadence/MMSIM/cur/tools/lib/64bit:/usr/cad/cadence/MMSIM/cur/tools/lib:/usr/cad/cadence/IC/IC_06.17.709/tools/lib:/usr/cad/cadence/IC/IC_06.17.709/oa/lib/linux_rhel50_gcc48x_64/opt:/usr/cad/cadence/IC/IC_06.17.709/tools/Qt/64bit/lib:/usr/cad/cadence/IC/IC_06.17.709/tools/dfII/lib/64bit:/usr/cad/cadence/IC/IC_06.17.709/tools/sev/lib/64bit:/usr/cad/cadence/IC/IC_06.17.709/tools/lib/64bit:/usr/cad/cadence/IC/IC_06.17.709/tools/hdf5/lib/64bit:/usr/cad/cadence/IC/IC_06.17.709/tools/lz4/lib/64bit:/usr/cad/cadence/INCISIV/cur/tools.lnx86/lib/64bit:/usr/cad/synopsys/verdi/cur/share/PLI/IUS/LINUX:/usr/cad/cadence/INCISIV/cur/tools/lib:/usr/cad/cadence/INCISIV/cur/tools/vtools/vfault/lib:/usr/cad/synopsys/verdi/cur/share/PLI/IUS/LINUX
+/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/bin/gnumake -j8 -f GNUmakefile
+gnumake: *** Warning: File `GNUmakefile' has modification time in the future (2023-01-08 14:09:02 > 2023-01-08 14:06:40)
+Cleaning ./obj/optimize/5.0
+rm -f -rf ./obj/optimize/5.0
+gnumake: warning:  Clock skew detected.  Your build may be incomplete.
+gnumake: *** Warning: File `GNUmakefile' has modification time in the future (2023-01-08 14:09:02 > 2023-01-08 14:06:40)
+Compiling C file LF.c (optimize)
+/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/bin/64bit/ahdlcc 0 /usr/cad/cadence/MMSIM/cur/tools.lnx86/cdsgcc/gcc/4.8/bin/gcc  -march=k8 -ffast-math -fno-unsafe-math-optimizations -O3 -m64 -DSYSV -DSVR4 -D_REENTRANT -fPIC   -DconfigSPECTRE -I. -I/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include -c LF.c -o obj/optimize/5.0/LF.o || rm -f -f obj/optimize/5.0/LF.o
+<stdin>: In function 'LF_DcFuncDerLoad':
+<stdin>:156:40: warning: passing argument 1 of 'aslDevInterAddStaticElement' makes pointer from integer without a cast [enabled by default]
+In file included from <stdin>:24:0:
+/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include/ahdlDevLibGlobal.h:1917:37: note: expected 'void *' but argument is of type 'long int'
+     ASL_FUNC_DECL_START extern long aslDevInterAddStaticElement( void *, double, struct ahdlFuncModeParam * );
+                                     ^
+<stdin>:157:40: warning: passing argument 1 of 'aslDevInterAddStaticElement' makes pointer from integer without a cast [enabled by default]
+In file included from <stdin>:24:0:
+/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include/ahdlDevLibGlobal.h:1917:37: note: expected 'void *' but argument is of type 'long int'
+     ASL_FUNC_DECL_START extern long aslDevInterAddStaticElement( void *, double, struct ahdlFuncModeParam * );
+                                     ^
+<stdin>:166:7: warning: passing argument 1 of 'aslDevInterAddStaticElement' makes pointer from integer without a cast [enabled by default]
+In file included from <stdin>:24:0:
+/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include/ahdlDevLibGlobal.h:1917:37: note: expected 'void *' but argument is of type 'long int'
+     ASL_FUNC_DECL_START extern long aslDevInterAddStaticElement( void *, double, struct ahdlFuncModeParam * );
+                                     ^
+<stdin>: In function 'LF_DcFuncLoad':
+<stdin>:223:7: warning: passing argument 1 of 'aslDevInterAddStaticElement' makes pointer from integer without a cast [enabled by default]
+In file included from <stdin>:24:0:
+/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include/ahdlDevLibGlobal.h:1917:37: note: expected 'void *' but argument is of type 'long int'
+     ASL_FUNC_DECL_START extern long aslDevInterAddStaticElement( void *, double, struct ahdlFuncModeParam * );
+                                     ^
+<stdin>: In function 'LF_ParamInit':
+<stdin>:340:2: warning: floating constant exceeds range of 'double' [-Woverflow]
+<stdin>:341:2: warning: floating constant exceeds range of 'double' [-Woverflow]
+<stdin>: In function 'LF_Initialize':
+<stdin>:367:1: warning: passing argument 3 of 'aslDevLaplaceAllocState' makes integer from pointer without a cast [enabled by default]
+In file included from <stdin>:24:0:
+/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include/ahdlDevLibGlobal.h:1844:44: note: expected 'long int' but argument is of type 'void *'
+     ASL_FUNC_DECL_START extern msgSeverity aslDevLaplaceAllocState( long , long , long , struct ahdlFuncModeParam * );
+                                            ^
+<stdin>:369:1: warning: passing argument 6 of 'aslDevDoLaplaceNewInit' makes pointer from integer without a cast [enabled by default]
+In file included from <stdin>:24:0:
+/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include/ahdlDevLibGlobal.h:1832:36: note: expected 'void *' but argument is of type 'long int'
+     ASL_FUNC_DECL_START extern int aslDevDoLaplaceNewInit ( int ,  void *,  int ,  void *,  int ,  void *,  int, struct ahdlFuncModeParam * );
+                                    ^
+<stdin>: In function 'LF_TranFuncDerLoad':
+<stdin>:417:40: warning: passing argument 1 of 'aslDevInterAddStaticElement' makes pointer from integer without a cast [enabled by default]
+In file included from <stdin>:24:0:
+/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include/ahdlDevLibGlobal.h:1917:37: note: expected 'void *' but argument is of type 'long int'
+     ASL_FUNC_DECL_START extern long aslDevInterAddStaticElement( void *, double, struct ahdlFuncModeParam * );
+                                     ^
+<stdin>:418:40: warning: passing argument 1 of 'aslDevInterAddStaticElement' makes pointer from integer without a cast [enabled by default]
+In file included from <stdin>:24:0:
+/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include/ahdlDevLibGlobal.h:1917:37: note: expected 'void *' but argument is of type 'long int'
+     ASL_FUNC_DECL_START extern long aslDevInterAddStaticElement( void *, double, struct ahdlFuncModeParam * );
+                                     ^
+<stdin>:427:7: warning: passing argument 1 of 'aslDevInterAddStaticElement' makes pointer from integer without a cast [enabled by default]
+In file included from <stdin>:24:0:
+/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include/ahdlDevLibGlobal.h:1917:37: note: expected 'void *' but argument is of type 'long int'
+     ASL_FUNC_DECL_START extern long aslDevInterAddStaticElement( void *, double, struct ahdlFuncModeParam * );
+                                     ^
+<stdin>: In function 'LF_TranFuncLoad':
+<stdin>:478:7: warning: passing argument 1 of 'aslDevInterAddStaticElement' makes pointer from integer without a cast [enabled by default]
+In file included from <stdin>:24:0:
+/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include/ahdlDevLibGlobal.h:1917:37: note: expected 'void *' but argument is of type 'long int'
+     ASL_FUNC_DECL_START extern long aslDevInterAddStaticElement( void *, double, struct ahdlFuncModeParam * );
+                                     ^
+<stdin>: In function 'LF_GetMatrixPointers':
+<stdin>:698:1: warning: passing argument 3 of 'aslDevLaplaceAllocStencil' makes integer from pointer without a cast [enabled by default]
+In file included from <stdin>:24:0:
+/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include/ahdlDevLibGlobal.h:1838:44: note: expected 'long int' but argument is of type 'void *'
+     ASL_FUNC_DECL_START extern msgSeverity aslDevLaplaceAllocStencil( long , long , long , struct ahdlFuncModeParam * );
+                                            ^
+<stdin>: In function 'LF_DeleteStencil':
+<stdin>:882:1: warning: passing argument 3 of 'aslDevLaplaceDeleteStencil' makes integer from pointer without a cast [enabled by default]
+In file included from <stdin>:24:0:
+/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include/ahdlDevLibGlobal.h:1840:44: note: expected 'long int' but argument is of type 'void *'
+     ASL_FUNC_DECL_START extern msgSeverity aslDevLaplaceDeleteStencil( long , long , long , struct ahdlFuncModeParam * );
+                                            ^
+<stdin>: In function 'LF_Delete':
+<stdin>:902:1: warning: passing argument 3 of 'aslDevLaplaceDelete' makes integer from pointer without a cast [enabled by default]
+In file included from <stdin>:24:0:
+/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include/ahdlDevLibGlobal.h:1842:44: note: expected 'long int' but argument is of type 'void *'
+     ASL_FUNC_DECL_START extern msgSeverity aslDevLaplaceDelete( long , long , long , struct ahdlFuncModeParam * );
+                                            ^
+<stdin>: In function 'LF_pDC_Load':
+<stdin>:1426:952: warning: passing argument 1 of 'aslDevFillZeorDiagonalElemet' makes pointer from integer without a cast [enabled by default]
+In file included from <stdin>:24:0:
+/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include/ahdlDevLibGlobal.h:2419:37: note: expected 'void *' but argument is of type 'long int'
+     ASL_FUNC_DECL_START extern void aslDevFillZeorDiagonalElemet( void *, int, unsigned int, struct ahdlFuncModeParam * );
+                                     ^
+<stdin>: In function 'LF_pCompare':
+<stdin>:1467:1686: warning: assignment makes integer from pointer without a cast [enabled by default]
+<stdin>:1467:798: warning: passing argument 1 of 'memcpy' makes pointer from integer without a cast [enabled by default]
+In file included from /usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include/ahdlPiCmi.h:5:0,
+                 from /usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include/ahdlDevLibGlobal.h:81,
+                 from <stdin>:24:
+/usr/include/string.h:44:14: note: expected 'void * __restrict__' but argument is of type 'long int'
+ extern void *memcpy (void *__restrict __dest,
+              ^
+<stdin>:1467:798: warning: passing argument 2 of 'memcpy' makes pointer from integer without a cast [enabled by default]
+In file included from /usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include/ahdlPiCmi.h:5:0,
+                 from /usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include/ahdlDevLibGlobal.h:81,
+                 from <stdin>:24:
+/usr/include/string.h:44:14: note: expected 'const void * __restrict__' but argument is of type 'long int'
+ extern void *memcpy (void *__restrict __dest,
+              ^
+<stdin>:1467:1928: warning: assignment makes integer from pointer without a cast [enabled by default]
+<stdin>: In function 'LF_pGetMatrixPointers':
+<stdin>:1473:2102: warning: assignment makes integer from pointer without a cast [enabled by default]
+<stdin>: In function 'LF_pAnalTranLoad':
+<stdin>:1510:1854: warning: passing argument 1 of 'aslDevFillZeorDiagonalElemet' makes pointer from integer without a cast [enabled by default]
+In file included from <stdin>:24:0:
+/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include/ahdlDevLibGlobal.h:2419:37: note: expected 'void *' but argument is of type 'long int'
+     ASL_FUNC_DECL_START extern void aslDevFillZeorDiagonalElemet( void *, int, unsigned int, struct ahdlFuncModeParam * );
+                                     ^
+<stdin>: In function 'LF_pSaveRestart':
+<stdin>:1536:509: warning: passing argument 2 of 'aslDevAvarSR' from incompatible pointer type [enabled by default]
+In file included from <stdin>:24:0:
+/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include/ahdlDevLibGlobal.h:1203:43: note: expected 'struct ahdlAnalogVar *' but argument is of type 'char *'
+     ASL_FUNC_DECL_START extern PklError_e aslDevAvarSR( int, struct ahdlAnalogVar *, char *, char *, char *, PklJar_t * );
+                                           ^
+<stdin>: In function 'LF_pSaveRestartInst':
+<stdin>:1539:511: warning: passing argument 2 of 'aslDevAvarSR' from incompatible pointer type [enabled by default]
+In file included from <stdin>:24:0:
+/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include/ahdlDevLibGlobal.h:1203:43: note: expected 'struct ahdlAnalogVar *' but argument is of type 'char *'
+     ASL_FUNC_DECL_START extern PklError_e aslDevAvarSR( int, struct ahdlAnalogVar *, char *, char *, char *, PklJar_t * );
+                                           ^
+rm -f -rf LF.c
+/usr/cad/cadence/MMSIM/cur/tools.lnx86/cdsgcc/gcc/4.8/bin/gcc -shared -O3 -m64 -fPIC -o obj/optimize/5.0/libahdlcmi_LF.so ./obj/optimize/5.0/LF.o  -Wl,-rpath,/usr/lib -Wl,-rpath,/lib -s 
+gnumake: warning:  Clock skew detected.  Your build may be incomplete.

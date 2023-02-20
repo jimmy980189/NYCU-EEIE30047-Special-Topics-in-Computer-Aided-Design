@@ -1,0 +1,182 @@
+ahdlcmicompile: Compiling ahdlcmi in input.ahdlSimDB//86c2de98d28d239bb04bd27b9675dd69.cp.ahdlcmi/Linux-64/ for Linux-64 with optimize using gcc on Sun Jan  8 14:06:39 CST 2023 [5.0]
+ahdlcmicompile: Generating makefile
+PATH:  /usr/cad/cadence/MMSIM/cur/tools.lnx86/cdsgcc/gcc/4.1-x86_64/install/bin:/usr/cad/cadence/MMSIM/cur/bin:/usr/cad/cadence/MMSIM/cur/tools/bin/64bit:/usr/cad/cadence/MMSIM/cur/tools/bin:/usr/cad/cadence/IC/IC_06.17.709/bin:/usr/cad/cadence/IC/IC_06.17.709/tools/bin:/usr/cad/cadence/IC/IC_06.17.709/tools/bin/64bit:/usr/cad/cadence/IC/IC_06.17.709/oa/bin:/usr/cad/cadence/IC/IC_06.17.709/tools/dfII/bin:/usr/cad/cadence/IC/IC_06.17.709/tools/dracula/bin:/usr/cad/cadence/MMSIM/cur/tools/dfII/bin:/usr/cad/cadence/INCISIV/cur/tools/bin:/usr/cad/cadence/INCISIV/cur/tools/vtools/vfault/bin:/usr/cad/cadence/INCISIV/cur/tools/dfII/bin:/usr/cad/synopsys/verdi/cur/bin:/usr/cad/synopsys/verdi/cur/nLint/bin:/usr/cad/synopsys/vcs/cur/bin:/usr/cad/synopsys/vcs/cur/linux/bin:/usr/cad/synopsys/vcs/cur/linux/util:/usr/cad/synopsys/vcs/cur/linux/flexlm:/usr/lib64/qt-3.3/bin:/usr/local/bin:/bin:/usr/bin
+LD_LIBRARY_PATH:  /usr/cad/cadence/MMSIM/cur/tools.lnx86/cdsgcc/gcc/4.1-x86_64/install/lib:/usr/cad/cadence/MMSIM/cur/tools/giganta/lib/64bit:/usr/cad/cadence/MMSIM/cur/tools/mdl/lib/64bit:/usr/cad/cadence/MMSIM/cur/tools/mmsim/lib/64bit:/usr/cad/cadence/MMSIM/cur/tools/tcltk-8.4.20/lib/64bit:/usr/cad/cadence/MMSIM/cur/tools/inca/lib/64bit:/usr/cad/cadence/MMSIM/cur/tools/spectre/lib/64bit:/usr/cad/cadence/MMSIM/cur/tools/dfII/lib/64bit:/usr/cad/cadence/MMSIM/cur/tools/lib/64bit:/usr/cad/cadence/MMSIM/cur/tools/lib:/usr/cad/cadence/IC/IC_06.17.709/tools/lib:/usr/cad/cadence/IC/IC_06.17.709/oa/lib/linux_rhel50_gcc48x_64/opt:/usr/cad/cadence/IC/IC_06.17.709/tools/Qt/64bit/lib:/usr/cad/cadence/IC/IC_06.17.709/tools/dfII/lib/64bit:/usr/cad/cadence/IC/IC_06.17.709/tools/sev/lib/64bit:/usr/cad/cadence/IC/IC_06.17.709/tools/lib/64bit:/usr/cad/cadence/IC/IC_06.17.709/tools/hdf5/lib/64bit:/usr/cad/cadence/IC/IC_06.17.709/tools/lz4/lib/64bit:/usr/cad/cadence/INCISIV/cur/tools.lnx86/lib/64bit:/usr/cad/synopsys/verdi/cur/share/PLI/IUS/LINUX:/usr/cad/cadence/INCISIV/cur/tools/lib:/usr/cad/cadence/INCISIV/cur/tools/vtools/vfault/lib:/usr/cad/synopsys/verdi/cur/share/PLI/IUS/LINUX
+/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/bin/gnumake -j8 -f GNUmakefile
+gnumake: *** Warning: File `GNUmakefile' has modification time in the future (2023-01-08 14:09:01 > 2023-01-08 14:06:39)
+Cleaning ./obj/optimize/5.0
+rm -f -rf ./obj/optimize/5.0
+gnumake: warning:  Clock skew detected.  Your build may be incomplete.
+gnumake: *** Warning: File `GNUmakefile' has modification time in the future (2023-01-08 14:09:01 > 2023-01-08 14:06:39)
+Compiling C file cp_ufunc.c (optimize)
+Compiling C file cp_func.c (optimize)
+/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/bin/64bit/ahdlcc 0 /usr/cad/cadence/MMSIM/cur/tools.lnx86/cdsgcc/gcc/4.8/bin/gcc  -march=k8 -ffast-math -fno-unsafe-math-optimizations -O3 -m64 -DSYSV -DSVR4 -D_REENTRANT -fPIC   -DconfigSPECTRE -I. -I/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include -c cp_ufunc.c -o obj/optimize/5.0/cp_ufunc.o || rm -f -f obj/optimize/5.0/cp_ufunc.o
+/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/bin/64bit/ahdlcc 0 /usr/cad/cadence/MMSIM/cur/tools.lnx86/cdsgcc/gcc/4.8/bin/gcc  -march=k8 -ffast-math -fno-unsafe-math-optimizations -O3 -m64 -DSYSV -DSVR4 -D_REENTRANT -fPIC   -DconfigSPECTRE -I. -I/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include -c cp_func.c -o obj/optimize/5.0/cp_func.o || rm -f -f obj/optimize/5.0/cp_func.o
+Compiling C file cp_DcFuncDerLoad.c (optimize)
+/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/bin/64bit/ahdlcc 0 /usr/cad/cadence/MMSIM/cur/tools.lnx86/cdsgcc/gcc/4.8/bin/gcc  -march=k8 -ffast-math -fno-unsafe-math-optimizations -O3 -m64 -DSYSV -DSVR4 -D_REENTRANT -fPIC   -DconfigSPECTRE -I. -I/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include -c cp_DcFuncDerLoad.c -o obj/optimize/5.0/cp_DcFuncDerLoad.o || rm -f -f obj/optimize/5.0/cp_DcFuncDerLoad.o
+Compiling C file cp_DcFuncLoad.c (optimize)
+/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/bin/64bit/ahdlcc 0 /usr/cad/cadence/MMSIM/cur/tools.lnx86/cdsgcc/gcc/4.8/bin/gcc  -march=k8 -ffast-math -fno-unsafe-math-optimizations -O3 -m64 -DSYSV -DSVR4 -D_REENTRANT -fPIC   -DconfigSPECTRE -I. -I/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include -c cp_DcFuncLoad.c -o obj/optimize/5.0/cp_DcFuncLoad.o || rm -f -f obj/optimize/5.0/cp_DcFuncLoad.o
+Compiling C file cp_TranFuncDerLoad.c (optimize)
+/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/bin/64bit/ahdlcc 0 /usr/cad/cadence/MMSIM/cur/tools.lnx86/cdsgcc/gcc/4.8/bin/gcc  -march=k8 -ffast-math -fno-unsafe-math-optimizations -O3 -m64 -DSYSV -DSVR4 -D_REENTRANT -fPIC   -DconfigSPECTRE -I. -I/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include -c cp_TranFuncDerLoad.c -o obj/optimize/5.0/cp_TranFuncDerLoad.o || rm -f -f obj/optimize/5.0/cp_TranFuncDerLoad.o
+Compiling C file cp_TranFuncLoad.c (optimize)
+/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/bin/64bit/ahdlcc 0 /usr/cad/cadence/MMSIM/cur/tools.lnx86/cdsgcc/gcc/4.8/bin/gcc  -march=k8 -ffast-math -fno-unsafe-math-optimizations -O3 -m64 -DSYSV -DSVR4 -D_REENTRANT -fPIC   -DconfigSPECTRE -I. -I/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include -c cp_TranFuncLoad.c -o obj/optimize/5.0/cp_TranFuncLoad.o || rm -f -f obj/optimize/5.0/cp_TranFuncLoad.o
+Compiling C file cp_cmi_c.c (optimize)
+/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/bin/64bit/ahdlcc 0 /usr/cad/cadence/MMSIM/cur/tools.lnx86/cdsgcc/gcc/4.8/bin/gcc  -march=k8 -ffast-math -fno-unsafe-math-optimizations -O3 -m64 -DSYSV -DSVR4 -D_REENTRANT -fPIC   -DconfigSPECTRE -I. -I/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include -I/usr/cad/cadence/MMSIM/cur/tools.lnx86/cmi/include -c cp_cmi_c.c -o obj/optimize/5.0/cp_cmi_c.o || rm -f -f obj/optimize/5.0/cp_cmi_c.o
+<stdin>: In function 'cp_DcFuncDerLoad':
+<stdin>:202:2: warning: passing argument 2 of 'cp_userFn_i_mult_der_110' from incompatible pointer type [enabled by default]
+<stdin>:136:194: note: expected 'struct cpInstData *' but argument is of type 'char *'
+<stdin>:224:2: warning: passing argument 2 of 'cp_userFn_i_mult_der_110' from incompatible pointer type [enabled by default]
+<stdin>:136:194: note: expected 'struct cpInstData *' but argument is of type 'char *'
+<stdin>:246:2: warning: passing argument 2 of 'cp_userFn_i_mult_der_110' from incompatible pointer type [enabled by default]
+<stdin>:136:194: note: expected 'struct cpInstData *' but argument is of type 'char *'
+<stdin>:268:2: warning: passing argument 2 of 'cp_userFn_i_mult_der_110' from incompatible pointer type [enabled by default]
+<stdin>:136:194: note: expected 'struct cpInstData *' but argument is of type 'char *'
+<stdin>:294:2: warning: passing argument 2 of 'cp_userFn_i_mult_der_110' from incompatible pointer type [enabled by default]
+<stdin>:136:194: note: expected 'struct cpInstData *' but argument is of type 'char *'
+<stdin>:403:40: warning: passing argument 1 of 'aslDevInterAddStaticElement' makes pointer from integer without a cast [enabled by default]
+In file included from <stdin>:24:0:
+/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include/ahdlDevLibGlobal.h:1917:37: note: expected 'void *' but argument is of type 'long int'
+     ASL_FUNC_DECL_START extern long aslDevInterAddStaticElement( void *, double, struct ahdlFuncModeParam * );
+                                     ^
+<stdin>:404:40: warning: passing argument 1 of 'aslDevInterAddStaticElement' makes pointer from integer without a cast [enabled by default]
+In file included from <stdin>:24:0:
+/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include/ahdlDevLibGlobal.h:1917:37: note: expected 'void *' but argument is of type 'long int'
+     ASL_FUNC_DECL_START extern long aslDevInterAddStaticElement( void *, double, struct ahdlFuncModeParam * );
+                                     ^
+<stdin>:405:40: warning: passing argument 1 of 'aslDevInterAddStaticElement' makes pointer from integer without a cast [enabled by default]
+In file included from <stdin>:24:0:
+/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include/ahdlDevLibGlobal.h:1917:37: note: expected 'void *' but argument is of type 'long int'
+     ASL_FUNC_DECL_START extern long aslDevInterAddStaticElement( void *, double, struct ahdlFuncModeParam * );
+                                     ^
+<stdin>:406:40: warning: passing argument 1 of 'aslDevInterAddStaticElement' makes pointer from integer without a cast [enabled by default]
+In file included from <stdin>:24:0:
+/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include/ahdlDevLibGlobal.h:1917:37: note: expected 'void *' but argument is of type 'long int'
+     ASL_FUNC_DECL_START extern long aslDevInterAddStaticElement( void *, double, struct ahdlFuncModeParam * );
+                                     ^
+<stdin>: In function 'cp_AcLoad':
+<stdin>:203:2: warning: passing argument 2 of 'cp_userFn_i_mult_der_110' from incompatible pointer type [enabled by default]
+<stdin>:136:194: note: expected 'struct cpInstData *' but argument is of type 'char *'
+<stdin>:230:2: warning: passing argument 2 of 'cp_userFn_i_mult_der_110' from incompatible pointer type [enabled by default]
+<stdin>:136:194: note: expected 'struct cpInstData *' but argument is of type 'char *'
+<stdin>:257:2: warning: passing argument 2 of 'cp_userFn_i_mult_der_110' from incompatible pointer type [enabled by default]
+<stdin>:136:194: note: expected 'struct cpInstData *' but argument is of type 'char *'
+<stdin>:284:2: warning: passing argument 2 of 'cp_userFn_i_mult_der_110' from incompatible pointer type [enabled by default]
+<stdin>:136:194: note: expected 'struct cpInstData *' but argument is of type 'char *'
+<stdin>:315:2: warning: passing argument 2 of 'cp_userFn_i_mult_der_110' from incompatible pointer type [enabled by default]
+<stdin>:136:194: note: expected 'struct cpInstData *' but argument is of type 'char *'
+<stdin>: In function 'cp_ParamInit':
+<stdin>:444:2: warning: floating constant exceeds range of 'double' [-Woverflow]
+<stdin>:445:2: warning: floating constant exceeds range of 'double' [-Woverflow]
+<stdin>:472:2: warning: floating constant exceeds range of 'double' [-Woverflow]
+<stdin>:473:2: warning: floating constant exceeds range of 'double' [-Woverflow]
+<stdin>:492:2: warning: floating constant exceeds range of 'double' [-Woverflow]
+<stdin>:493:2: warning: floating constant exceeds range of 'double' [-Woverflow]
+<stdin>:512:2: warning: floating constant exceeds range of 'double' [-Woverflow]
+<stdin>:513:2: warning: floating constant exceeds range of 'double' [-Woverflow]
+<stdin>:572:2: warning: floating constant exceeds range of 'double' [-Woverflow]
+<stdin>:573:2: warning: floating constant exceeds range of 'double' [-Woverflow]
+rm -f -rf cp_ufunc.c
+<stdin>: In function 'cp_pDC_Load':
+<stdin>:916:952: warning: passing argument 1 of 'aslDevFillZeorDiagonalElemet' makes pointer from integer without a cast [enabled by default]
+In file included from <stdin>:24:0:
+/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include/ahdlDevLibGlobal.h:2419:37: note: expected 'void *' but argument is of type 'long int'
+     ASL_FUNC_DECL_START extern void aslDevFillZeorDiagonalElemet( void *, int, unsigned int, struct ahdlFuncModeParam * );
+                                     ^
+<stdin>: In function 'cp_pCompare':
+<stdin>:970:2010: warning: assignment makes integer from pointer without a cast [enabled by default]
+<stdin>:970:798: warning: passing argument 1 of 'memcpy' makes pointer from integer without a cast [enabled by default]
+In file included from /usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include/ahdlPiCmi.h:5:0,
+                 from /usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include/ahdlDevLibGlobal.h:81,
+                 from <stdin>:24:
+/usr/include/string.h:44:14: note: expected 'void * __restrict__' but argument is of type 'long int'
+ extern void *memcpy (void *__restrict __dest,
+              ^
+<stdin>:970:798: warning: passing argument 2 of 'memcpy' makes pointer from integer without a cast [enabled by default]
+In file included from /usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include/ahdlPiCmi.h:5:0,
+                 from /usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include/ahdlDevLibGlobal.h:81,
+                 from <stdin>:24:
+/usr/include/string.h:44:14: note: expected 'const void * __restrict__' but argument is of type 'long int'
+ extern void *memcpy (void *__restrict __dest,
+              ^
+<stdin>:970:2257: warning: assignment makes integer from pointer without a cast [enabled by default]
+rm -f -rf cp_DcFuncDerLoad.c
+<stdin>: In function 'cp_pGetMatrixPointers':
+<stdin>:976:2108: warning: assignment makes integer from pointer without a cast [enabled by default]
+<stdin>: In function 'cp_pAnalTranLoad':
+<stdin>:1018:1854: warning: passing argument 1 of 'aslDevFillZeorDiagonalElemet' makes pointer from integer without a cast [enabled by default]
+In file included from <stdin>:24:0:
+/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include/ahdlDevLibGlobal.h:2419:37: note: expected 'void *' but argument is of type 'long int'
+     ASL_FUNC_DECL_START extern void aslDevFillZeorDiagonalElemet( void *, int, unsigned int, struct ahdlFuncModeParam * );
+                                     ^
+<stdin>: In function 'cp_pSaveRestart':
+<stdin>:1044:509: warning: passing argument 2 of 'aslDevAvarSR' from incompatible pointer type [enabled by default]
+In file included from <stdin>:24:0:
+/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include/ahdlDevLibGlobal.h:1203:43: note: expected 'struct ahdlAnalogVar *' but argument is of type 'char *'
+     ASL_FUNC_DECL_START extern PklError_e aslDevAvarSR( int, struct ahdlAnalogVar *, char *, char *, char *, PklJar_t * );
+                                           ^
+<stdin>: In function 'cp_pSaveRestartInst':
+<stdin>:1047:511: warning: passing argument 2 of 'aslDevAvarSR' from incompatible pointer type [enabled by default]
+In file included from <stdin>:24:0:
+/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include/ahdlDevLibGlobal.h:1203:43: note: expected 'struct ahdlAnalogVar *' but argument is of type 'char *'
+     ASL_FUNC_DECL_START extern PklError_e aslDevAvarSR( int, struct ahdlAnalogVar *, char *, char *, char *, PklJar_t * );
+                                           ^
+<stdin>: In function 'cp_DcFuncLoad':
+<stdin>:170:2: warning: passing argument 2 of 'cp_userFn_i_mult_000' from incompatible pointer type [enabled by default]
+<stdin>:136:8: note: expected 'struct cpInstData *' but argument is of type 'char *'
+<stdin>:187:2: warning: passing argument 2 of 'cp_userFn_i_mult_000' from incompatible pointer type [enabled by default]
+<stdin>:136:8: note: expected 'struct cpInstData *' but argument is of type 'char *'
+<stdin>:204:2: warning: passing argument 2 of 'cp_userFn_i_mult_000' from incompatible pointer type [enabled by default]
+<stdin>:136:8: note: expected 'struct cpInstData *' but argument is of type 'char *'
+<stdin>:221:2: warning: passing argument 2 of 'cp_userFn_i_mult_000' from incompatible pointer type [enabled by default]
+<stdin>:136:8: note: expected 'struct cpInstData *' but argument is of type 'char *'
+<stdin>:242:2: warning: passing argument 2 of 'cp_userFn_i_mult_000' from incompatible pointer type [enabled by default]
+<stdin>:136:8: note: expected 'struct cpInstData *' but argument is of type 'char *'
+<stdin>: In function 'cp_TranFuncDerLoad':
+<stdin>:206:2: warning: passing argument 2 of 'cp_userFn_i_mult_der_110' from incompatible pointer type [enabled by default]
+<stdin>:136:194: note: expected 'struct cpInstData *' but argument is of type 'char *'
+<stdin>:233:2: warning: passing argument 2 of 'cp_userFn_i_mult_der_110' from incompatible pointer type [enabled by default]
+<stdin>:136:194: note: expected 'struct cpInstData *' but argument is of type 'char *'
+<stdin>:260:2: warning: passing argument 2 of 'cp_userFn_i_mult_der_110' from incompatible pointer type [enabled by default]
+<stdin>:136:194: note: expected 'struct cpInstData *' but argument is of type 'char *'
+<stdin>:287:2: warning: passing argument 2 of 'cp_userFn_i_mult_der_110' from incompatible pointer type [enabled by default]
+<stdin>:136:194: note: expected 'struct cpInstData *' but argument is of type 'char *'
+<stdin>:318:2: warning: passing argument 2 of 'cp_userFn_i_mult_der_110' from incompatible pointer type [enabled by default]
+<stdin>:136:194: note: expected 'struct cpInstData *' but argument is of type 'char *'
+<stdin>:427:40: warning: passing argument 1 of 'aslDevInterAddStaticElement' makes pointer from integer without a cast [enabled by default]
+In file included from <stdin>:24:0:
+/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include/ahdlDevLibGlobal.h:1917:37: note: expected 'void *' but argument is of type 'long int'
+     ASL_FUNC_DECL_START extern long aslDevInterAddStaticElement( void *, double, struct ahdlFuncModeParam * );
+                                     ^
+<stdin>:428:40: warning: passing argument 1 of 'aslDevInterAddStaticElement' makes pointer from integer without a cast [enabled by default]
+In file included from <stdin>:24:0:
+/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include/ahdlDevLibGlobal.h:1917:37: note: expected 'void *' but argument is of type 'long int'
+     ASL_FUNC_DECL_START extern long aslDevInterAddStaticElement( void *, double, struct ahdlFuncModeParam * );
+                                     ^
+<stdin>:429:40: warning: passing argument 1 of 'aslDevInterAddStaticElement' makes pointer from integer without a cast [enabled by default]
+In file included from <stdin>:24:0:
+/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include/ahdlDevLibGlobal.h:1917:37: note: expected 'void *' but argument is of type 'long int'
+     ASL_FUNC_DECL_START extern long aslDevInterAddStaticElement( void *, double, struct ahdlFuncModeParam * );
+                                     ^
+<stdin>:430:40: warning: passing argument 1 of 'aslDevInterAddStaticElement' makes pointer from integer without a cast [enabled by default]
+In file included from <stdin>:24:0:
+/usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/ahdlcmi/include/ahdlDevLibGlobal.h:1917:37: note: expected 'void *' but argument is of type 'long int'
+     ASL_FUNC_DECL_START extern long aslDevInterAddStaticElement( void *, double, struct ahdlFuncModeParam * );
+                                     ^
+<stdin>: In function 'cp_TranFuncLoad':
+<stdin>:174:2: warning: passing argument 2 of 'cp_userFn_i_mult_000' from incompatible pointer type [enabled by default]
+<stdin>:136:8: note: expected 'struct cpInstData *' but argument is of type 'char *'
+<stdin>:196:2: warning: passing argument 2 of 'cp_userFn_i_mult_000' from incompatible pointer type [enabled by default]
+<stdin>:136:8: note: expected 'struct cpInstData *' but argument is of type 'char *'
+<stdin>:218:2: warning: passing argument 2 of 'cp_userFn_i_mult_000' from incompatible pointer type [enabled by default]
+<stdin>:136:8: note: expected 'struct cpInstData *' but argument is of type 'char *'
+<stdin>:240:2: warning: passing argument 2 of 'cp_userFn_i_mult_000' from incompatible pointer type [enabled by default]
+<stdin>:136:8: note: expected 'struct cpInstData *' but argument is of type 'char *'
+<stdin>:266:2: warning: passing argument 2 of 'cp_userFn_i_mult_000' from incompatible pointer type [enabled by default]
+<stdin>:136:8: note: expected 'struct cpInstData *' but argument is of type 'char *'
+rm -f -rf cp_DcFuncLoad.c
+rm -f -rf cp_TranFuncDerLoad.c
+rm -f -rf cp_func.c
+rm -f -rf cp_TranFuncLoad.c
+rm -f -rf cp_cmi_c.c
+/usr/cad/cadence/MMSIM/cur/tools.lnx86/cdsgcc/gcc/4.8/bin/gcc -shared -O3 -m64 -fPIC -o obj/optimize/5.0/libahdlcmi_cp.so ./obj/optimize/5.0/cp_ufunc.o ./obj/optimize/5.0/cp_func.o ./obj/optimize/5.0/cp_DcFuncDerLoad.o ./obj/optimize/5.0/cp_DcFuncLoad.o ./obj/optimize/5.0/cp_TranFuncDerLoad.o ./obj/optimize/5.0/cp_TranFuncLoad.o ./obj/optimize/5.0/cp_cmi_c.o  -Wl,-rpath,/usr/lib -Wl,-rpath,/lib -s 
+gnumake: warning:  Clock skew detected.  Your build may be incomplete.

@@ -1,0 +1,18 @@
+( ( nil
+  version "2.1"
+  mapType "incremental"
+  blockName "pll_mix"
+  repList "spectre spice pspice verilog verilogams behavioral functional systemVerilog schematic veriloga vhdl vhdlams wreal"
+  stopList "symbol"
+  globalList "gnd!"
+  hierDelim "."
+  netlistDir "/edahome/course/2022CAD/2022CAD021/NYCU-EEIE30047-Special-Topics-in-Computer-Aided-Design/HW4-Modeling-Mixed-Signal-System-and-Simulating-with-AMS/2022CAD_HW4/Lab2/pll_mix/spectre/config/netlist"
+ )
+( net
+( "gnd!" "0" )
+ )
+( model
+( "PLL/pll_mix/schematic" "pll_mix" )
+ )
+( "pll_mix" "ihnl/cds0/map" )
+ )

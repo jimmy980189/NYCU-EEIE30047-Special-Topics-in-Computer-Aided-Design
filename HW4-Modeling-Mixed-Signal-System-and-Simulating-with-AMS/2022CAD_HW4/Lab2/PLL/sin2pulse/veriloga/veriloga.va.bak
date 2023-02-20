@@ -1,0 +1,9 @@
+// VerilogA for PLL, sin2pulse, veriloga
+
+`include "constants.vams"
+`include "disciplines.vams"
+
+module sin2pulse;
+
+
+endmodule

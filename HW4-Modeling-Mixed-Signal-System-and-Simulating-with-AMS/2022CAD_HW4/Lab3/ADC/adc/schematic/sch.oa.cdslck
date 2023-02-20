@@ -1,0 +1,16 @@
+#
+# Edit Lock-Stake file. CAUTION: Please do not change.
+#
+# Information about current Edit Lock Owner.
+#
+LockStakeVersion               1.1
+LoginName                      2022CAD021
+HostName                       mseda01
+ProcessIdentifier              30774
+ProcessCreationTime_UTC        1673179390
+ProcessCreationTime_Readable   Sun Jan  8 20:03:10 2023 CST
+AppIdentifier                  OA File System Design Manager
+OSType                         unix
+ReasonForPlacingEditLock       OpenAccess edit lock
+FilePathUsedToEditLock         /edahome/course/2022CAD/2022CAD021/NYCU-EEIE30047-Special-Topics-in-Computer-Aided-Design/HW4-Modeling-Mixed-Signal-System-and-Simulating-with-AMS/2022CAD_HW4/Lab3/ADC/adc/schematic/sch.oa.cdslck.dirlck
+TimeEditLocked                 Sun Jan  8 20:06:10 2023 CST

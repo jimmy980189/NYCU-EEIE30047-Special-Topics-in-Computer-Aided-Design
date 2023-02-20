@@ -1,0 +1,21 @@
+ncvlog(64): 15.20-s039: (c) Copyright 1995-2017 Cadence Design Systems, Inc.
+TOOL:	ncvlog(64)	15.20-s039: Started on Jan 08, 2023 at 20:26:05 CST
+ncvlog
+    -use5x
+    -SPECIFICUNIT encoder
+    -zparse /tmp/vamsZparsd0774
+    -NOWARN DLNOHV
+    -work ADC
+    -view verilogams
+    -nostdout
+    -logfile /edahome/course/2022CAD/2022CAD021/NYCU-EEIE30047-Special-Topics-in-Computer-Aided-Design/HW4-Modeling-Mixed-Signal-System-and-Simulating-with-AMS/2022CAD_HW4/Lab3/.cadence/dfII/TextSupport/Logs/Parser/verilogams/ADC/verilogams/compile0.log
+    -messages
+    -ams
+    -cdslib /edahome/course/2022CAD/2022CAD021/NYCU-EEIE30047-Special-Topics-in-Computer-Aided-Design/HW4-Modeling-Mixed-Signal-System-and-Simulating-with-AMS/2022CAD_HW4/Lab3/cds.lib
+    /edahome/course/2022CAD/2022CAD021/NYCU-EEIE30047-Special-Topics-in-Computer-Aided-Design/HW4-Modeling-Mixed-Signal-System-and-Simulating-with-AMS/2022CAD_HW4/Lab3/ADC/encoder/verilogams/verilog.vams
+
+file: /edahome/course/2022CAD/2022CAD021/NYCU-EEIE30047-Special-Topics-in-Computer-Aided-Design/HW4-Modeling-Mixed-Signal-System-and-Simulating-with-AMS/2022CAD_HW4/Lab3/ADC/encoder/verilogams/verilog.vams
+	module ADC.encoder:verilogams
+		errors: 0, warnings: 0
+	 writing out DPL output:
+TOOL:	ncvlog(64)	15.20-s039: Exiting on Jan 08, 2023 at 20:26:05 CST  (total: 00:00:00)

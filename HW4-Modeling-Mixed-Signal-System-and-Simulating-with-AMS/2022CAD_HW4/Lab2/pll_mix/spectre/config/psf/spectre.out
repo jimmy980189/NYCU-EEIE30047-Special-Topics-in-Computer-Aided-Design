@@ -1,0 +1,103 @@
+
+Cadence (R) Virtuoso (R) Spectre (R) Circuit Simulator
+Version 15.1.0.801.isr17 64bit -- 19 Apr 2017
+Copyright (C) 1989-2017 Cadence Design Systems, Inc. All rights reserved worldwide. Cadence, Virtuoso and Spectre are registered trademarks of Cadence Design Systems, Inc. All others are the property of their respective holders.
+
+Includes RSA BSAFE(R) Cryptographic or Security Protocol Software from RSA Security, Inc.
+
+User: 2022CAD021   Host: mseda01   HostID: 7F0100   PID: 30231
+Memory  available: 61.3776 GB  physical: 67.4805 GB
+Linux   : CentOS release 6.10 (Final)
+CPU Type: Intel(R) Xeon(R) CPU E3-1230 v6 @ 3.50GHz
+All processors running at 3504.0 MHz
+        Socket: Processors (Hyperthreaded Processor)
+        0:       0 (  4 ),  1 (  5 ),  2 (  6 ),  3 (  7 )
+        
+System load averages (1min, 5min, 15min) : 77.8 %, 77.1 %, 75.8 %
+Hyperthreading is enabled
+
+
+Simulating `input.scs' on mseda01 at 2:06:37 PM, Sun Jan 8, 2023 (process id: 30231).
+Current working directory: /edahome/course/2022CAD/2022CAD021/NYCU-EEIE30047-Special-Topics-in-Computer-Aided-Design/HW4-Modeling-Mixed-Signal-System-and-Simulating-with-AMS/2022CAD_HW4/Lab2/pll_mix/spectre/config/netlist
+Command line:
+    /usr/cad/cadence/MMSIM/cur/tools/bin/spectre -64 input.scs  \
+        +escchars +log ../psf/spectre.out +inter=mpsc  \
+        +mpssession=spectre3_22531_4 -format psfxl -raw ../psf  \
+        +lqtimeout 900 -maxw 5 -maxn 5
+spectre pid = 30231
+
+Loading /usr/cad/cadence/MMSIM/cur/tools.lnx86/cmi/lib/64bit/5.0/libinfineon_sh.so ...
+Loading /usr/cad/cadence/MMSIM/cur/tools.lnx86/cmi/lib/64bit/5.0/libphilips_o_sh.so ...
+Loading /usr/cad/cadence/MMSIM/cur/tools.lnx86/cmi/lib/64bit/5.0/libphilips_sh.so ...
+Loading /usr/cad/cadence/MMSIM/cur/tools.lnx86/cmi/lib/64bit/5.0/libsparam_sh.so ...
+Loading /usr/cad/cadence/MMSIM/cur/tools.lnx86/cmi/lib/64bit/5.0/libstmodels_sh.so ...
+Reading file:  /edahome/course/2022CAD/2022CAD021/NYCU-EEIE30047-Special-Topics-in-Computer-Aided-Design/HW4-Modeling-Mixed-Signal-System-and-Simulating-with-AMS/2022CAD_HW4/Lab2/pll_mix/spectre/config/netlist/input.scs
+Reading link:  /usr/cad/cadence/MMSIM/cur
+Reading link:  /usr/cad
+Reading file:  /home/EDATOOLS/cadence/MMSIM/MMSIM_15.10.801/tools.lnx86/spectre/etc/configs/spectre.cfg
+Reading file:  /home/EDATOOLS/cadence/MMSIM/MMSIM_15.10.801/tools.lnx86/spectre/etc/configs/mapsubckt.cfg
+Reading file:  /edahome/course/2022CAD/2022CAD021/NYCU-EEIE30047-Special-Topics-in-Computer-Aided-Design/HW4-Modeling-Mixed-Signal-System-and-Simulating-with-AMS/2022CAD_HW4/Lab2/PLL/pfd/veriloga/veriloga.va
+Reading link:  /usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/etc/ahdl/constants.h
+Reading file:  /home/EDATOOLS/cadence/MMSIM/MMSIM_15.10.801/tools.lnx86/spectre/etc/ahdl/constants.vams
+Reading link:  /usr/cad/cadence/MMSIM/cur/tools.lnx86/spectre/etc/ahdl/discipline.h
+Reading file:  /home/EDATOOLS/cadence/MMSIM/MMSIM_15.10.801/tools.lnx86/spectre/etc/ahdl/disciplines.vams
+Reading file:  /edahome/course/2022CAD/2022CAD021/NYCU-EEIE30047-Special-Topics-in-Computer-Aided-Design/HW4-Modeling-Mixed-Signal-System-and-Simulating-with-AMS/2022CAD_HW4/Lab2/PLL/cp/veriloga/veriloga.va
+Reading file:  /edahome/course/2022CAD/2022CAD021/NYCU-EEIE30047-Special-Topics-in-Computer-Aided-Design/HW4-Modeling-Mixed-Signal-System-and-Simulating-with-AMS/2022CAD_HW4/Lab2/PLL/LF/veriloga/veriloga.va
+Reading file:  /edahome/course/2022CAD/2022CAD021/NYCU-EEIE30047-Special-Topics-in-Computer-Aided-Design/HW4-Modeling-Mixed-Signal-System-and-Simulating-with-AMS/2022CAD_HW4/Lab2/PLL/vco/veriloga/veriloga.va
+Reading file:  /edahome/course/2022CAD/2022CAD021/NYCU-EEIE30047-Special-Topics-in-Computer-Aided-Design/HW4-Modeling-Mixed-Signal-System-and-Simulating-with-AMS/2022CAD_HW4/Lab2/PLL/sin2pulse/veriloga/veriloga.va
+Time for NDB Parsing: CPU = 77.989 ms, elapsed = 191.277 ms.
+Time accumulated: CPU = 93.985 ms, elapsed = 191.281 ms.
+Peak resident memory used = 43.3 Mbytes.
+
+
+The CPU load for active processors is :
+        Spectre  0 (61.9 %)      1 (100.0 %)     2 (100.0 %)     3 (15.8 %)
+                 4 (100.0 %)     5 (100.0 %)     6 (100.0 %)     7 (100.0 %)
+        Other   
+Created directory input.ahdlSimDB/ (775)
+Created directory input.ahdlSimDB//80969cd2b87440c7ba46622f18ed0c77.pfd.ahdlcmi/ (775)
+Created directory input.ahdlSimDB//80969cd2b87440c7ba46622f18ed0c77.pfd.ahdlcmi/Linux-64/ (775)
+Compiling ahdlcmi module library.
+Finished compilation in 1.38 s (elapsed).
+Installed compiled interface for pfd.
+Opening directory input.ahdlSimDB/ (775)
+Created directory input.ahdlSimDB//86c2de98d28d239bb04bd27b9675dd69.cp.ahdlcmi/ (775)
+Created directory input.ahdlSimDB//86c2de98d28d239bb04bd27b9675dd69.cp.ahdlcmi/Linux-64/ (775)
+Compiling ahdlcmi module library.
+Finished compilation in 1.41 s (elapsed).
+Installed compiled interface for cp.
+Opening directory input.ahdlSimDB/ (775)
+Created directory input.ahdlSimDB//adc919d591c2d3be85e18bd99b47d343.LF.ahdlcmi/ (775)
+Created directory input.ahdlSimDB//adc919d591c2d3be85e18bd99b47d343.LF.ahdlcmi/Linux-64/ (775)
+Compiling ahdlcmi module library.
+Finished compilation in 905 ms (elapsed).
+Installed compiled interface for LF.
+Opening directory input.ahdlSimDB/ (775)
+Created directory input.ahdlSimDB//c9c430b7da9b310a14b6a44d3df1714a.vco.ahdlcmi/ (775)
+Created directory input.ahdlSimDB//c9c430b7da9b310a14b6a44d3df1714a.vco.ahdlcmi/Linux-64/ (775)
+Compiling ahdlcmi module library.
+Finished compilation in 903 ms (elapsed).
+Installed compiled interface for vco.
+Opening directory input.ahdlSimDB/ (775)
+Created directory input.ahdlSimDB//0c3ff06d7aa060c991372dc9976086fd.sin2pulse.ahdlcmi/ (775)
+Created directory input.ahdlSimDB//0c3ff06d7aa060c991372dc9976086fd.sin2pulse.ahdlcmi/Linux-64/ (775)
+Compiling ahdlcmi module library.
+Finished compilation in 1.16 s (elapsed).
+Installed compiled interface for sin2pulse.
+
+Error found by spectre during circuit read-in.
+    ERROR (SFE-23): "input.scs" 27: The instance `I5' is referencing an undefined model or subcircuit, `divider_d'. Either include the file containing the definition of `divider_d', or define `divider_d' before running the simulation.
+    ERROR (SFE-23): "input.scs" 28: The instance `I6' is referencing an undefined model or subcircuit, `stimulus_D'. Either include the file containing the definition of `stimulus_D', or define `stimulus_D' before running the simulation.
+
+Time for Elaboration: CPU = 160.976 ms, elapsed = 5.94974 s.
+Time accumulated: CPU = 255.96 ms, elapsed = 6.14119 s.
+Peak resident memory used = 57.2 Mbytes.
+
+
+Aggregate audit (2:06:43 PM, Sun Jan 8, 2023):
+Time used: CPU = 257 ms, elapsed = 6.14 s, util. = 4.18%.
+Time spent in licensing: elapsed = 62.8 ms.
+Peak memory used = 57.3 Mbytes.
+Simulation started at: 2:06:37 PM, Sun Jan 8, 2023, ended at: 2:06:43 PM, Sun Jan 8, 2023, with elapsed time (wall clock): 6.14 s.
+spectre completes with 2 errors, 0 warnings, and 0 notices.
+spectre terminated prematurely due to fatal error.

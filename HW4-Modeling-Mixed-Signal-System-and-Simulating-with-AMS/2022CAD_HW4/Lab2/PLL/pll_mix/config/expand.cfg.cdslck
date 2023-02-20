@@ -1,0 +1,16 @@
+#
+# Edit Lock-Stake file. CAUTION: Please do not change.
+#
+# Information about current Edit Lock Owner.
+#
+LockStakeVersion               1.1
+LoginName                      2022CAD021
+HostName                       mseda01
+ProcessIdentifier              32503
+ProcessCreationTime_UTC        1673158455
+ProcessCreationTime_Readable   Sun Jan  8 14:14:15 2023 CST
+AppIdentifier                  /usr/cad/cadence/IC/IC_06.17.709/tools/dfII/bin/64bit/virtuoso
+OSType                         lnx86
+ReasonForPlacingEditLock       Not specified
+FilePathUsedToEditLock         /edahome/course/2022CAD/2022CAD021/NYCU-EEIE30047-Special-Topics-in-Computer-Aided-Design/HW4-Modeling-Mixed-Signal-System-and-Simulating-with-AMS/2022CAD_HW4/Lab2/PLL/pll_mix/config/expand.cfg
+TimeEditLocked                 Sun Jan  8 14:17:00 2023 CST
